@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CODE YUDH – BATTLE OF CODES | Chandigarh University</title>
+  <meta name="description" content="Code Yudh – Battle of Codes: 24-Hour Hybrid Software Development Hackathon organized by the Department of Computer Science and Engineering, Chandigarh University, Mohali." />
+  <link rel="icon" type="image/svg+xml" href="/assets/poster.png" />
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+
+  <!-- Three.js 3D WebGL Background Canvas -->
+  <div id="three-canvas-container"></div>
+
+  <!-- Audio Synthesizer Status Button -->
+  <button id="sound-toggle-btn" class="sound-toggle interactive" data-hud="TOGGLE BATTLE AUDIO">
+    🔊 SOUND: ON
+  </button>
+
+  <!-- Code Weapon Strike Toast -->
+  <div id="code-strike-toast" class="code-strike-toast"></div>
+
+  <!-- Top Battlefield HUD Bar -->
+  <header class="top-hud-bar">
+    <div class="hud-logo font-cinzel">
+      <span>⚔️</span> CODE YUDH
+    </div>
+    <nav class="hud-nav">
+      <a href="#about-section" class="hud-link interactive" data-hud="THE BATTLE MISSION">THE BATTLE</a>
+      <a href="#scrolls-anchor" class="hud-link interactive" data-hud="DAY 01 & 02 SCROLLS">BATTLE SCROLLS</a>
+      <a href="#battlefields-section" class="hud-link interactive" data-hud="6 TRACK TERRITORIES">BATTLEFIELDS</a>
+      <a href="#arsenal-section" class="hud-link interactive" data-hud="WEAPONS & TECH">ARSENAL</a>
+      <a href="#chronicle-section" class="hud-link interactive" data-hud="EVENT TIMELINE">CHRONICLE</a>
+      <a href="#faq-section" class="hud-link interactive" data-hud="WAR TABLETS FAQ">FAQ</a>
+    </nav>
+    <button class="open-reg-modal boom-btn interactive" data-hud="REGISTER YOUR SQUAD" style="padding: 8px 20px; font-size: 13px;">
+      ⚔️ ENTER BATTLE
+    </button>
+  </header>
+
+  <!-- ==========================================================
+       1. THE FIRST MOMENTS: FULLSCREEN VIDEO + SINGULARITY BOOM
+  ========================================================== -->
+  <div id="cinematic-intro">
+    <!-- Single Master Clash Video -->
+    <video id="cinematic-video" class="cinematic-bg-video" autoplay muted playsinline>
+      <source src="/assets/warriors_sword.mp4" type="video/mp4" />
+    </video>
+
+    <!-- White-Hot Plasma Singularity Flash on Clash Boom -->
+    <div id="boom-flash"></div>
+
+    <!-- Overlay controls over video -->
+    <div class="intro-video-controls">
+      <div class="intro-video-status font-mono">
+        ⚡ BATTLE SINGULARITY INCOMING // CLASH AT IMPACT
+      </div>
+
+      <div class="intro-actions">
+        <button id="trigger-boom-btn" class="boom-btn interactive" data-hud="EXECUTE CLASH BOOM">
+          💥 TRIGGER BOOM & ENTER
+        </button>
+        <button id="skip-intro-btn" class="skip-intro interactive" data-hud="ENTER DIRECTLY">
+          SKIP TO SCROLL ⏩
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       2. MAIN BATTLEFIELD & LIVING SCROLL CONTAINER
+  ========================================================== -->
+  <main id="main-battlefield">
+
+    <!-- Hero Header -->
+    <div id="about-section" class="hero-scroll-intro">
+      <div class="hero-badge font-mono">
+        🏛️ DEPARTMENT OF COMPUTER SCIENCE & ENGINEERING · CHANDIGARH UNIVERSITY
+      </div>
+      <h1 class="battle-title font-cinzel">CODE YUDH</h1>
+      <p class="battle-subtitle">BATTLE OF CODES — 24-HOUR HYBRID SOFTWARE HACKATHON</p>
+      
+      <div class="battle-meta">
+        <div class="meta-item"><span>🗓️</span> <b>27–28 OCTOBER 2026</b></div>
+        <div class="meta-item"><span>📍</span> <b>CHANDIGARH UNIVERSITY, MOHALI</b></div>
+        <div class="meta-item"><span>👥</span> <b>3–4 WARRIORS / SQUAD</b></div>
+        <div class="meta-item"><span>🎓</span> <b>UNDERGRADUATE ENGINEERS</b></div>
+      </div>
+
+      <p style="max-width: 800px; margin: 24px auto 0; font-size: 17px; color: var(--text-muted); line-height: 1.6;">
+        <i style="color: var(--bright-amber);">"Bring your ideas. Build your solution. Battle with code."</i><br>
+        A premier hybrid hackathon bringing together creative, technically skilled, and innovative minds to solve real-world challenges through technology.
+      </p>
+    </div>
+
+    <!-- ==========================================================
+         3. THE DUAL BATTLE SCROLLS (CENTRAL INTERACTIVE ENGINE)
+    ========================================================== -->
+    <div id="scrolls-anchor" class="scrolls-stage">
+
+      <!-- 📜 DAY 01 SCROLL: THE CALL TO BATTLE -->
+      <div id="day1-scroll" class="battle-scroll">
+        <div class="scroll-rod-top"></div>
+
+        <!-- Sealed Overlay: Royal Wax Seal -->
+        <div class="scroll-seal-overlay">
+          <div id="day1-wax-seal" class="wax-seal seal-trigger interactive" data-hud="⚔️ SLASH WAX SEAL TO UNROLL">
+            <span class="wax-seal-icon">📜</span>
+            <span class="wax-seal-text">UNSEAL</span>
+          </div>
+          <h3 class="seal-prompt font-cinzel">DAY 01: THE CALL TO BATTLE</h3>
+          <p class="seal-subprompt font-mono">⚔️ CLICK / SLASH THE SEAL TO UNROLL PARCHMENT</p>
+        </div>
+
+        <!-- Unsealed Day 1 Content (Ancient Ink on Parchment) -->
+        <div class="scroll-inner">
+          <div class="parchment-pattern"></div>
+          
+          <div class="scroll-header">
+            <div class="scroll-phase-tag font-mono">PHASE 01 — ONLINE SCREENING</div>
+            <h2 class="scroll-day-title font-cinzel">DAY 01: THE CALL TO BATTLE</h2>
+            <div class="scroll-date-badge">
+              📅 11 OCTOBER 2026, 12:00 AM IST &nbsp;➔&nbsp; 14 OCTOBER 2026, 11:59 PM IST
+            </div>
+          </div>
+
+          <div class="mission-box">
+            <h4 class="mission-title font-cinzel">YOUR MISSION: PPT PROPOSAL</h4>
+            <p style="font-size: 13.5px; color: var(--ancient-ink); margin-bottom: 12px; font-weight: 500;">
+              Submit a comprehensive presentation outlining your team's battle plan:
+            </p>
+            <ul class="mission-list">
+              <li><b>Problem Statement:</b> Identify a critical real-world friction point.</li>
+              <li><b>Proposed Solution:</b> Formulate an innovative technology-driven fix.</li>
+              <li><b>Innovation:</b> What makes your solution novel and differentiated?</li>
+              <li><b>Technology Approach:</b> Your architecture, algorithms, and tools.</li>
+            </ul>
+            <div style="margin-top: 10px; font-size: 12px; color: var(--battle-bronze); font-weight: 700;">
+              ⭐ Optional additions: Working Prototype, Video Demo, or GitHub Repository link.
+            </div>
+          </div>
+
+          <h4 class="font-cinzel" style="font-size: 16px; color: var(--battle-bronze); margin-bottom: 10px; font-weight: 900;">
+            THE FOUR JUDGEMENT SEALS
+          </h4>
+          <div class="judgement-seals-grid">
+            <div class="seal-card interactive" data-hud="CRITERIA 1: INNOVATION">
+              <div class="seal-card-num font-mono">CRITERIA 01</div>
+              <div class="seal-card-name">⚔️ INNOVATION</div>
+              <p class="seal-card-desc">How innovative, bold, and original is the proposed solution?</p>
+            </div>
+            <div class="seal-card interactive" data-hud="CRITERIA 2: FEASIBILITY">
+              <div class="seal-card-num font-mono">CRITERIA 02</div>
+              <div class="seal-card-name">🛡️ FEASIBILITY</div>
+              <p class="seal-card-desc">Can the solution realistically be developed and deployed in 24 hours?</p>
+            </div>
+            <div class="seal-card interactive" data-hud="CRITERIA 3: TECHNICAL APPROACH">
+              <div class="seal-card-num font-mono">CRITERIA 03</div>
+              <div class="seal-card-name">⚙️ TECHNICAL APPROACH</div>
+              <p class="seal-card-desc">How effectively and deeply does the chosen tech stack address the core problem?</p>
+            </div>
+            <div class="seal-card interactive" data-hud="CRITERIA 4: POTENTIAL IMPACT">
+              <div class="seal-card-num font-mono">CRITERIA 04</div>
+              <div class="seal-card-name">🌍 POTENTIAL IMPACT</div>
+              <p class="seal-card-desc">What tangible societal, commercial, or humanitarian value will it generate?</p>
+            </div>
+          </div>
+
+          <div class="screening-seal-banner">
+            <h5>⚔️ SCREENING COMPLETE</h5>
+            <p>Shortlisted warrior squads advance directly to the 24-Hour Offline Arena!</p>
+          </div>
+        </div>
+
+        <div class="scroll-rod-bottom"></div>
+      </div>
+
+      <!-- 📜 DAY 02 SCROLL: THE FINAL YUDH -->
+      <div id="day2-scroll" class="battle-scroll" style="border-color: var(--aged-metal);">
+        <div class="scroll-rod-top"></div>
+
+        <!-- Sealed Overlay: 3 Heavy Forged Chains -->
+        <div class="scroll-seal-overlay">
+          <div class="chains-container">
+            <div class="chain-item interactive" data-hud="⚔️ SLASH CHAIN 1">
+              <span style="font-size: 20px;">⛓️</span>
+            </div>
+            <div class="chain-item interactive" data-hud="⚔️ SLASH CHAIN 2">
+              <span style="font-size: 20px;">⛓️</span>
+            </div>
+            <div class="chain-item interactive" data-hud="⚔️ SLASH CHAIN 3">
+              <span style="font-size: 20px;">⛓️</span>
+            </div>
+          </div>
+          <h3 class="seal-prompt font-cinzel">DAY 02: THE FINAL YUDH</h3>
+          <p id="chains-prompt-sub" class="seal-subprompt font-mono">⚔️ SLASH ALL 3 CHAINS TO UNLEASH THE 24-HR WAR</p>
+        </div>
+
+        <!-- Unsealed Day 2 Content (Ancient Ink on Parchment) -->
+        <div class="scroll-inner">
+          <div class="parchment-pattern"></div>
+          
+          <div class="scroll-header">
+            <div class="scroll-phase-tag font-mono">PHASE 02 — OFFLINE FINALE</div>
+            <h2 class="scroll-day-title font-cinzel">DAY 02: THE FINAL YUDH</h2>
+            <div class="scroll-date-badge">
+              📅 27 OCT, 08:30 AM IST &nbsp;➔&nbsp; 28 OCT, 05:00 PM IST
+            </div>
+          </div>
+
+          <div class="mission-box">
+            <h4 class="mission-title font-cinzel">THE 24-HOUR BATTLEFIELD ARENA</h4>
+            <p style="font-size: 13.5px; color: var(--ancient-ink); margin-bottom: 12px; font-weight: 500;">
+              Venue: <b>Chandigarh University, Mohali</b>. Shortlisted squads assemble for a continuous 24-hour sprint to transform ideas into working prototypes.
+            </p>
+            <ul class="mission-list">
+              <li><b>Build:</b> Develop functional code and hardware integrations.</li>
+              <li><b>Test:</b> Continuous integration, edge case validation, and stress-testing.</li>
+              <li><b>Refine:</b> UI/UX polish, mentor feedback implementation, performance tuning.</li>
+              <li><b>Demonstrate:</b> Live presentation before judges and industry juries.</li>
+            </ul>
+          </div>
+
+          <h4 class="font-cinzel" style="font-size: 16px; color: var(--battle-bronze); margin-bottom: 10px; font-weight: 900;">
+            FINAL EVALUATION PILLARS
+          </h4>
+          <div class="judgement-seals-grid">
+            <div class="seal-card interactive" data-hud="PHASE 2 PILLAR 1">
+              <div class="seal-card-num font-mono">PILLAR 01</div>
+              <div class="seal-card-name">🌟 INNOVATION</div>
+              <p class="seal-card-desc">Originality, creative audacity, and uniqueness of execution.</p>
+            </div>
+            <div class="seal-card interactive" data-hud="PHASE 2 PILLAR 2">
+              <div class="seal-card-num font-mono">PILLAR 02</div>
+              <div class="seal-card-name">💻 IMPLEMENTATION</div>
+              <p class="seal-card-desc">Code quality, architectural robustness, and depth of technical build.</p>
+            </div>
+            <div class="seal-card interactive" data-hud="PHASE 2 PILLAR 3">
+              <div class="seal-card-num font-mono">PILLAR 03</div>
+              <div class="seal-card-name">⚡ FUNCTIONALITY</div>
+              <p class="seal-card-desc">Real demonstrable working features during live jury interrogation.</p>
+            </div>
+            <div class="seal-card interactive" data-hud="PHASE 2 PILLAR 4">
+              <div class="seal-card-num font-mono">PILLAR 04</div>
+              <div class="seal-card-name">🎯 IMPACT</div>
+              <p class="seal-card-desc">Scalability, user viability, and quantifiable real-world efficacy.</p>
+            </div>
+          </div>
+
+          <div class="screening-seal-banner">
+            <h5>🏆 GLORY & RECOGNITION</h5>
+            <p>Cash prizes, trophies, direct incubation access, and industry recruitment opportunities!</p>
+          </div>
+        </div>
+
+        <div class="scroll-rod-bottom"></div>
+      </div>
+
+    </div>
+
+    <!-- ==========================================================
+         4. 24-HOUR BATTLE CLOCK & DEVELOPMENT STATIONS
+    ========================================================== -->
+    <section class="battlefield-24h-section">
+      <div class="section-head">
+        <div class="section-tag">RUNTIME ENGINE</div>
+        <h2 class="section-title">THE 24-HOUR BATTLE CYCLE</h2>
+        <p class="section-desc">From Idea to Impact: 4 development combat stations marking your progression.</p>
+      </div>
+
+      <!-- 24-Hour Circular Battle Clock HUD -->
+      <div class="battle-clock-hud">
+        <div class="clock-rim">
+          <div class="clock-center">
+            <div class="clock-hours">24:00:00</div>
+            <div class="clock-sub">NON-STOP WAR</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 Development Stations -->
+      <div class="stations-grid">
+        <div class="station-card interactive" data-hud="STATION 1: BUILD">
+          <div class="station-num">STATION 01</div>
+          <h3 class="station-name">⚔️ BUILD</h3>
+          <p class="station-desc">Transform your proposed idea into a working software & hardware solution.</p>
+          <div class="station-telemetry font-mono">&gt; status: ASSEMBLING_MODULES [OK]</div>
+        </div>
+
+        <div class="station-card interactive" data-hud="STATION 2: TEST">
+          <div class="station-num">STATION 02</div>
+          <h3 class="station-name">🛡️ TEST</h3>
+          <p class="station-desc">Test your implementation, stress-test API endpoints, and identify edge issues.</p>
+          <div class="station-telemetry font-mono">&gt; telemetry: 0 ERRORS DETECTED</div>
+        </div>
+
+        <div class="station-card interactive" data-hud="STATION 3: REFINE">
+          <div class="station-num">STATION 03</div>
+          <h3 class="station-name">⚙️ REFINE</h3>
+          <p class="station-desc">Upgrade and optimize your solution based on live testing and mentor reviews.</p>
+          <div class="station-telemetry font-mono">&gt; system: OPTIMIZING_LATENCY [99.4%]</div>
+        </div>
+
+        <div class="station-card interactive" data-hud="STATION 4: DEMONSTRATE">
+          <div class="station-num">STATION 04</div>
+          <h3 class="station-name">🌟 DEMONSTRATE</h3>
+          <p class="station-desc">Present your functional prototype before the judging panel and industry leaders.</p>
+          <div class="station-telemetry font-mono">&gt; arena: JURY_SHOWCASE_ACTIVE</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         5. THE 6 BATTLEFIELD TERRITORIES (TRACKS)
+    ========================================================== -->
+    <section id="battlefields-section" class="territories-section">
+      <div class="section-head">
+        <div class="section-tag">CHOOSE YOUR FRONT</div>
+        <h2 class="section-title font-cinzel">THE SIX BATTLEFIELD TERRITORIES</h2>
+        <p class="section-desc">Six tactical domains where technology solves human challenges. Select your war zone.</p>
+      </div>
+
+      <div class="territories-grid">
+        <!-- 01 Smart Cities -->
+        <div class="territory-card track-card interactive" data-hud="TERRITORY 01: SMART CITIES">
+          <div class="territory-num">TERRITORY 01</div>
+          <h3 class="territory-name">🏙️ SMART & SUSTAINABLE CITIES</h3>
+          <p class="territory-desc">
+            Innovative solutions for urban development, smart governance, digital public services, mobility, waste management, safety, and sustainable infrastructure.
+          </p>
+          <div class="territory-focus">
+            <span class="focus-tag">AI</span>
+            <span class="focus-tag">IoT</span>
+            <span class="focus-tag">Geospatial</span>
+            <span class="focus-tag">CivicTech</span>
+            <span class="focus-tag">Smart Mobility</span>
+            <span class="focus-tag">E-Governance</span>
+          </div>
+        </div>
+
+        <!-- 02 AgriTech -->
+        <div class="territory-card track-card interactive" data-hud="TERRITORY 02: AGRITECH">
+          <div class="territory-num">TERRITORY 02</div>
+          <h3 class="territory-name">🌾 AGRITECH & RURAL TRANSFORMATION</h3>
+          <p class="territory-desc">
+            Technology-driven solutions aimed at improving agricultural productivity, farmer livelihoods, rural connectivity, and supply-chain efficiency.
+          </p>
+          <div class="territory-focus">
+            <span class="focus-tag">Precision Farming</span>
+            <span class="focus-tag">AI/ML</span>
+            <span class="focus-tag">Drones</span>
+            <span class="focus-tag">IoT</span>
+            <span class="focus-tag">Soil Health</span>
+            <span class="focus-tag">Agri-FinTech</span>
+            <span class="focus-tag">Supply Chain</span>
+          </div>
+        </div>
+
+        <!-- 03 Healthcare -->
+        <div class="territory-card track-card interactive" data-hud="TERRITORY 03: HEALTHCARE">
+          <div class="territory-num">TERRITORY 03</div>
+          <h3 class="territory-name">🧬 HEALTHCARE, WELLBEING & ASSISTIVE TECH</h3>
+          <p class="territory-desc">
+            Affordable and accessible technology solutions addressing healthcare delivery, preventive care, wellness, accessibility, and assistive needs.
+          </p>
+          <div class="territory-focus">
+            <span class="focus-tag">MedTech</span>
+            <span class="focus-tag">AI/ML</span>
+            <span class="focus-tag">Telemedicine</span>
+            <span class="focus-tag">HealthTech</span>
+            <span class="focus-tag">Assistive Tech</span>
+            <span class="focus-tag">Mental Wellness</span>
+          </div>
+        </div>
+
+        <!-- 04 Education -->
+        <div class="territory-card track-card interactive" data-hud="TERRITORY 04: EDUCATION">
+          <div class="territory-num">TERRITORY 04</div>
+          <h3 class="territory-name">🎓 EDUCATION, SKILLING & FUTURE OF WORK</h3>
+          <p class="territory-desc">
+            Innovative platforms and technologies that improve learning, skill development, employability, and the future of education and work.
+          </p>
+          <div class="territory-focus">
+            <span class="focus-tag">EdTech</span>
+            <span class="focus-tag">AI Tutors</span>
+            <span class="focus-tag">Personalized Learning</span>
+            <span class="focus-tag">VR/AR</span>
+            <span class="focus-tag">Skill Platforms</span>
+            <span class="focus-tag">CareerTech</span>
+          </div>
+        </div>
+
+        <!-- 05 Energy & Climate -->
+        <div class="territory-card track-card interactive" data-hud="TERRITORY 05: ENERGY & CLIMATE">
+          <div class="territory-num">TERRITORY 05</div>
+          <h3 class="territory-name">⚡ ENERGY, ENVIRONMENT & CLIMATE ACTION</h3>
+          <p class="territory-desc">
+            Technology-driven solutions for environmental sustainability, clean energy efficiency, climate resilience, and conservation.
+          </p>
+          <div class="territory-focus">
+            <span class="focus-tag">Renewable Energy</span>
+            <span class="focus-tag">EV</span>
+            <span class="focus-tag">Carbon Mgmt</span>
+            <span class="focus-tag">Waste Mgmt</span>
+            <span class="focus-tag">Circular Economy</span>
+            <span class="focus-tag">ClimateTech</span>
+          </div>
+        </div>
+
+        <!-- 06 Open Innovation -->
+        <div class="territory-card track-card open-innovation interactive" data-hud="TERRITORY 06: OPEN INNOVATION">
+          <div class="territory-num" style="color: var(--vidyut-cyan);">TERRITORY 06</div>
+          <h3 class="territory-name" style="color: var(--plasma-blue);">🌌 OPEN INNOVATION (NO BOUNDARIES)</h3>
+          <p class="territory-desc">
+            An open-ended track for bold, disruptive ideas addressing meaningful real-world challenges beyond defined themes across any domain.
+          </p>
+          <div class="territory-focus">
+            <span class="focus-tag">Generative AI</span>
+            <span class="focus-tag">Blockchain</span>
+            <span class="focus-tag">Robotics</span>
+            <span class="focus-tag">Cloud</span>
+            <span class="focus-tag">Web/Mobile</span>
+            <span class="focus-tag">Deep Tech</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         6. THE TECHNOLOGY ARSENAL (WEAPONS OF WAR)
+    ========================================================== -->
+    <section id="arsenal-section" class="arsenal-section">
+      <div class="section-head">
+        <div class="section-tag">WEAPONS SYSTEM</div>
+        <h2 class="section-title font-cinzel">THE CODE ARSENAL</h2>
+        <p class="section-desc">Click any weapon of code to discharge its tactical syntax into the battlefield.</p>
+      </div>
+
+      <div class="arsenal-grid">
+        <div class="weapon-card interactive" data-hud="FIRE AI/ML">
+          <div class="weapon-icon">🧠</div>
+          <div class="weapon-name">AI / ML</div>
+          <div class="weapon-snippet">model.train(yudh)</div>
+        </div>
+        <div class="weapon-card interactive" data-hud="FIRE GEN AI">
+          <div class="weapon-icon">✨</div>
+          <div class="weapon-name">GENERATIVE AI</div>
+          <div class="weapon-snippet">ai.synthesize()</div>
+        </div>
+        <div class="weapon-card interactive" data-hud="FIRE DATA SCIENCE">
+          <div class="weapon-icon">📊</div>
+          <div class="weapon-name">DATA SCIENCE</div>
+          <div class="weapon-snippet">pandas.analytics()</div>
+        </div>
+        <div class="weapon-card interactive" data-hud="FIRE IOT">
+          <div class="weapon-icon">📡</div>
+          <div class="weapon-name">IoT</div>
+          <div class="weapon-snippet">mesh.broadcast()</div>
+        </div>
+        <div class="weapon-card interactive" data-hud="FIRE GEOSPATIAL">
+          <div class="weapon-icon">🗺️</div>
+          <div class="weapon-name">GEOSPATIAL</div>
+          <div class="weapon-snippet">geo.triangulate()</div>
+        </div>
+        <div class="weapon-card interactive" data-hud="FIRE CLOUD">
+          <div class="weapon-icon">☁️</div>
+          <div class="weapon-name">CLOUD</div>
+          <div class="weapon-snippet">k8s.deploy(pods)</div>
+        </div>
+        <div class="weapon-card interactive" data-hud="FIRE BLOCKCHAIN">
+          <div class="weapon-icon">⛓️</div>
+          <div class="weapon-name">BLOCKCHAIN</div>
+          <div class="weapon-snippet">contract.verify()</div>
+        </div>
+        <div class="weapon-card interactive" data-hud="FIRE CYBERSECURITY">
+          <div class="weapon-icon">🛡️</div>
+          <div class="weapon-name">CYBERSECURITY</div>
+          <div class="weapon-snippet">zeroTrust.shield()</div>
+        </div>
+        <div class="weapon-card interactive" data-hud="FIRE WEB">
+          <div class="weapon-icon">🌐</div>
+          <div class="weapon-name">WEB</div>
+          <div class="weapon-snippet">dom.render(yudh)</div>
+        </div>
+        <div class="weapon-card interactive" data-hud="FIRE MOBILE">
+          <div class="weapon-icon">📱</div>
+          <div class="weapon-name">MOBILE</div>
+          <div class="weapon-snippet">flutter.build()</div>
+        </div>
+        <div class="weapon-card interactive" data-hud="FIRE ROBOTICS">
+          <div class="weapon-icon">🤖</div>
+          <div class="weapon-name">ROBOTICS</div>
+          <div class="weapon-snippet">servo.actuate()</div>
+        </div>
+        <div class="weapon-card interactive" data-hud="FIRE VR/AR">
+          <div class="weapon-icon">🥽</div>
+          <div class="weapon-name">VR / AR</div>
+          <div class="weapon-snippet">xr.projectHolo()</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         7. SQUAD FORMATION & BATTLE MASTERS
+    ========================================================== -->
+    <div class="squad-mentors-grid">
+      <!-- Squad Box -->
+      <div class="squad-box">
+        <div class="section-tag">WARRIOR CRITERIA</div>
+        <h3 class="font-cinzel" style="font-size: 24px; color: var(--plasma-white); margin-top: 6px;">FORM YOUR SQUAD</h3>
+        <p style="font-size: 14px; color: var(--text-muted); margin-top: 8px;">
+          Bring together your comrades and prepare to build something real.
+        </p>
+        <div class="squad-silhouette">
+          <span>⚔️</span>
+          <span>🛡️</span>
+          <span>⚡</span>
+          <span>🏹</span>
+        </div>
+        <div style="background: rgba(0,0,0,0.5); padding: 14px 18px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 13px;">
+          <div>👥 <b>TEAM SIZE:</b> 3–4 Members per Squad</div>
+          <div style="margin-top: 6px;">🎓 <b>ELIGIBILITY:</b> Undergraduate Engineering Students</div>
+          <div style="margin-top: 6px;">🌐 <b>FORMAT:</b> Hybrid (Online PPT + Offline 24H)</div>
+        </div>
+      </div>
+
+      <!-- Battle Masters Box -->
+      <div class="mentors-box">
+        <div class="section-tag" style="color: var(--vidyut-cyan);">COMMAND GUIDANCE</div>
+        <h3 class="font-cinzel" style="font-size: 24px; color: var(--plasma-white); margin-top: 6px;">BATTLE MASTERS</h3>
+        <p style="font-size: 14px; color: var(--text-muted); margin-top: 8px;">
+          Build with guidance from leading industry experts, innovators, and university faculty mentors during the 24 hours.
+        </p>
+
+        <!-- Side Quests Banner -->
+        <div class="side-quests-banner">
+          <div>
+            <div class="quest-tag">OPTIONAL SIDE QUESTS DETECTED</div>
+            <div class="quest-title font-cinzel">QUIZZES & TREASURE HUNT</div>
+          </div>
+          <span style="font-size: 28px;">🗺️</span>
+        </div>
+
+        <div style="margin-top: 20px; font-size: 13.5px; color: var(--text-main); line-height: 1.5;">
+          Gain hands-on experience, problem-solving, rapid prototyping, and exclusive incubation networking.
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================================
+         8. BATTLE CHRONICLE (TIMELINE PATH)
+    ========================================================== -->
+    <section id="chronicle-section" class="chronicle-section">
+      <div class="section-head">
+        <div class="section-tag">SACRED CALENDAR</div>
+        <h2 class="section-title font-cinzel">THE BATTLE CHRONICLE</h2>
+        <p class="section-desc">Key milestones on the path to the championship.</p>
+      </div>
+
+      <div class="timeline-path">
+        <div class="timeline-node">
+          <div class="timeline-date">11 OCTOBER 2026 · 12:00 AM IST</div>
+          <h4 class="timeline-event">PHASE 1 OPENS — PPT SUBMISSION BEGINS</h4>
+          <p class="timeline-detail">Online screening opens. Squads register and submit their battle proposals.</p>
+        </div>
+
+        <div class="timeline-node">
+          <div class="timeline-date">14 OCTOBER 2026 · 11:59 PM IST</div>
+          <h4 class="timeline-event">PHASE 1 CLOSES — SUBMISSION DEADLINE</h4>
+          <p class="timeline-detail">Online portal locks. Evaluation committee screens proposals against the 4 judgement criteria.</p>
+        </div>
+
+        <div class="timeline-node">
+          <div class="timeline-date">MID OCTOBER 2026</div>
+          <h4 class="timeline-event">SHORTLISTING OF FINAL WARRIOR SQUADS</h4>
+          <p class="timeline-detail">Top squads are invited to the offline battlegrounds at Chandigarh University.</p>
+        </div>
+
+        <div class="timeline-node">
+          <div class="timeline-date">27 OCTOBER 2026 · 08:30 AM IST</div>
+          <h4 class="timeline-event">THE FINAL YUDH COMMENCES</h4>
+          <p class="timeline-detail">Opening ceremony, mentor allocations, and the 24-hour non-stop countdown initiates.</p>
+        </div>
+
+        <div class="timeline-node">
+          <div class="timeline-date">28 OCTOBER 2026 · 05:00 PM IST</div>
+          <h4 class="timeline-event">HACKATHON CONCLUDES & FINAL EVALUATION</h4>
+          <p class="timeline-detail">Final live demonstrations before the jury, awards ceremony, and crowning of the Champions.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         9. FAQ — WAR TABLETS
+    ========================================================== -->
+    <section id="faq-section" class="faq-section">
+      <div class="section-head">
+        <div class="section-tag">ANCIENT SCRIPTURES</div>
+        <h2 class="section-title font-cinzel">THE WAR TABLETS (FAQ)</h2>
+        <p class="section-desc">Click any inscribed stone tablet to unveil tactical answers.</p>
+      </div>
+
+      <div class="faq-grid">
+        <!-- Q1 -->
+        <div class="faq-tablet interactive" data-hud="SLASH TABLET">
+          <div class="faq-question">
+            <span>WHO CAN PARTICIPATE?</span>
+            <span class="faq-toggle-icon">+</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            The hackathon is open to undergraduate engineering students from recognized universities and institutions.
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="faq-tablet interactive" data-hud="SLASH TABLET">
+          <div class="faq-question">
+            <span>WHAT IS THE TEAM SIZE?</span>
+            <span class="faq-toggle-icon">+</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            Each squad must consist of 3 to 4 members. Interdisciplinary squads are warmly encouraged.
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="faq-tablet interactive" data-hud="SLASH TABLET">
+          <div class="faq-question">
+            <span>WHAT IS THE FORMAT OF THE HACKATHON?</span>
+            <span class="faq-toggle-icon">+</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            Code Yudh follows a hybrid format: Phase 1 is an online PPT screening round, followed by Phase 2—an intense offline 24-hour hackathon at Chandigarh University.
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="faq-tablet interactive" data-hud="SLASH TABLET">
+          <div class="faq-question">
+            <span>WHAT HAPPENS IN PHASE 1?</span>
+            <span class="faq-toggle-icon">+</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            Teams submit a presentation describing their problem statement, proposed solution, innovation, and technical approach.
+          </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="faq-tablet interactive" data-hud="SLASH TABLET">
+          <div class="faq-question">
+            <span>CAN WE SUBMIT A PROTOTYPE OR GITHUB LINK?</span>
+            <span class="faq-toggle-icon">+</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            Yes! Teams may optionally include a prototype, video demo, or GitHub repository link with their Phase 1 PPT submission.
+          </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="faq-tablet interactive" data-hud="SLASH TABLET">
+          <div class="faq-question">
+            <span>HOW ARE PHASE 1 SUBMISSIONS EVALUATED?</span>
+            <span class="faq-toggle-icon">+</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            Phase 1 submissions are evaluated on Innovation, Feasibility, Technical Approach, and Potential Impact.
+          </div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="faq-tablet interactive" data-hud="SLASH TABLET">
+          <div class="faq-question">
+            <span>WHAT HAPPENS AFTER PHASE 1?</span>
+            <span class="faq-toggle-icon">+</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            Shortlisted teams advance to the offline 24-hour finale at Chandigarh University, Mohali.
+          </div>
+        </div>
+
+        <!-- Q8 -->
+        <div class="faq-tablet interactive" data-hud="SLASH TABLET">
+          <div class="faq-question">
+            <span>WHERE AND WHEN WILL THE FINALE TAKE PLACE?</span>
+            <span class="faq-toggle-icon">+</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            The 24-hour offline finale will take place on 27–28 October 2026 at the Chandigarh University campus in Mohali, Punjab.
+          </div>
+        </div>
+
+        <!-- Q9 -->
+        <div class="faq-tablet interactive" data-hud="SLASH TABLET">
+          <div class="faq-question">
+            <span>WHAT WILL TEAMS DO DURING THE FINAL ROUND?</span>
+            <span class="faq-toggle-icon">+</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            Teams will build, test, refine, and demonstrate their working prototypes under the mentorship of industry and faculty experts.
+          </div>
+        </div>
+
+        <!-- Q10 -->
+        <div class="faq-tablet interactive" data-hud="SLASH TABLET">
+          <div class="faq-question">
+            <span>HOW WILL FINAL PROJECTS BE EVALUATED?</span>
+            <span class="faq-toggle-icon">+</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            Final projects are judged on Innovation, Implementation, Functionality of the live prototype, and Real-world Impact.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         10. FINAL REUNION SCENE & GRAND CTA
+    ========================================================== -->
+    <section class="final-scene-section">
+      <div class="final-warriors-display">
+        <div class="warrior-avatar-left">⚔️</div>
+        <div class="reunion-prototype">🌟</div>
+        <div class="warrior-avatar-right">⚡</div>
+      </div>
+
+      <div class="section-tag" style="color: var(--bright-amber); font-size: 14px;">THE BATTLE AWAITS</div>
+      <h2 class="font-cinzel" style="font-size: clamp(32px, 5vw, 60px); color: var(--plasma-white); margin-top: 8px;">
+        YOUR BATTLE BEGINS HERE
+      </h2>
+      <p style="font-size: 18px; color: var(--text-main); max-width: 600px; margin: 12px auto 0;">
+        Your idea is only the beginning. Form your team. Choose your battlefield. Build your solution. Take on Code Yudh.
+      </p>
+
+      <div style="margin-top: 28px;">
+        <button class="open-reg-modal final-cta-btn interactive" data-hud="REGISTER FOR CODE YUDH">
+          ⚔️ ENTER THE BATTLE
+        </button>
+      </div>
+
+      <div style="margin-top: 20px;">
+        <a href="#battlefields-section" class="interactive" data-hud="EXPLORE TRACKS" style="color: var(--vidyut-cyan); font-family: 'JetBrains Mono', monospace; font-size: 13px; text-decoration: none; letter-spacing: 1px;">
+          🗺️ EXPLORE BATTLEFIELDS ➔
+        </a>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="battle-footer">
+      <div class="footer-logo">⚔️ CODE YUDH — BATTLE OF CODES</div>
+      <p style="font-size: 14px; color: var(--text-muted); margin-top: 8px;">
+        24-Hour Software Development Hackathon · 27–28 October 2026 · Chandigarh University, Mohali
+      </p>
+      <p class="footer-credits">
+        Organized with honor by the <b>Department of Computer Science and Engineering</b>, Chandigarh University.
+      </p>
+      <div style="margin-top: 16px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--aged-metal);">
+        Build. Solve. Innovate. // &lt;/&gt;
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- ==========================================================
+       11. REGISTRATION MODAL
+  ========================================================== -->
+  <div id="reg-modal" class="modal-overlay">
+    <div class="modal-card">
+      <button id="modal-close-btn" class="modal-close interactive" data-hud="CLOSE MODAL">✕</button>
+      
+      <div class="section-tag">ENLIST SQUAD</div>
+      <h3 class="font-cinzel" style="font-size: 24px; color: var(--plasma-white); margin-top: 4px;">ENTER THE BATTLE</h3>
+      <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">
+        Register your 3–4 warrior squad for Code Yudh 2026 at Chandigarh University.
+      </p>
+
+      <form id="reg-form" style="margin-top: 20px;" onsubmit="event.preventDefault(); alert('⚔️ Squad Enlistment Recorded! Check your email for battle orders.'); document.getElementById('reg-modal').classList.remove('active');">
+        <div style="margin-bottom: 14px;">
+          <label style="display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--bright-amber); margin-bottom: 4px;">SQUAD NAME</label>
+          <input type="text" required placeholder="e.g. CyberVanguard" style="width: 100%; background: #0c0f17; border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 4px; padding: 10px; color: #fff; font-family: inherit;" />
+        </div>
+
+        <div style="margin-bottom: 14px;">
+          <label style="display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--bright-amber); margin-bottom: 4px;">TEAM LEADER NAME & EMAIL</label>
+          <input type="text" required placeholder="Warrior Lead (name@university.edu)" style="width: 100%; background: #0c0f17; border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 4px; padding: 10px; color: #fff; font-family: inherit;" />
+        </div>
+
+        <div style="margin-bottom: 14px;">
+          <label style="display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--bright-amber); margin-bottom: 4px;">SQUAD SIZE</label>
+          <select style="width: 100%; background: #0c0f17; border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 4px; padding: 10px; color: #fff; font-family: inherit;">
+            <option>3 Members</option>
+            <option selected>4 Members</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom: 18px;">
+          <label style="display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--bright-amber); margin-bottom: 4px;">PRIMARY BATTLEFIELD TRACK</label>
+          <select style="width: 100%; background: #0c0f17; border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 4px; padding: 10px; color: #fff; font-family: inherit;">
+            <option>01 — Smart & Sustainable Cities</option>
+            <option>02 — AgriTech & Rural Transformation</option>
+            <option>03 — Healthcare, Wellbeing & Assistive Tech</option>
+            <option>04 — Education, Skilling & Future of Work</option>
+            <option>05 — Energy, Environment & Climate Action</option>
+            <option>06 — Open Innovation (No Boundaries)</option>
+          </select>
+        </div>
+
+        <button type="submit" class="boom-btn interactive" data-hud="SUBMIT ENLISTMENT" style="width: 100%; padding: 14px; font-size: 16px;">
+          ⚔️ CONFIRM SQUAD REGISTRATION
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
