@@ -1,116 +1,98 @@
-// ⚔️ Master Battle Scroll Engine: Dual Unsealing Mechanics, 24-Hour War Clock, Weapons Arsenal & FAQ
+// ⚔️ Master Battle Scroll Engine: Horizontal Scroll Track (Day 01 ➔ Day 02), 24-Hour War Clock, Weapons Arsenal & FAQ
 import confetti from 'canvas-confetti';
 import { battleAudio } from './audio.js';
 
 export class ScrollManager {
   constructor(battleScene) {
     this.battleScene = battleScene;
-    this.day1Unsealed = false;
-    this.day2ChainsRemaining = 3;
     this.activeStation = 'build';
 
-    this.initDay1Unseal();
-    this.initDay2Chains();
+    this.initHorizontalScroll();
     this.initBattleClock();
     this.initArsenalStrikes();
     this.initFAQTablets();
     this.initModal();
   }
 
-  // --- DAY 01: ROYAL WAX SEAL SLASH ---
-  initDay1Unseal() {
-    const seal = document.getElementById('day1-wax-seal');
-    const scroll1 = document.getElementById('day1-scroll');
+  // --- HORIZONTAL SCROLL ENGINE (DAY 01 ➔ DAY 02) ---
+  initHorizontalScroll() {
+    const container = document.getElementById('scrolls-anchor');
+    const track = document.getElementById('horizontal-scroll-track');
+    const slides = document.querySelectorAll('.scroll-slide');
+    const progressBar = document.getElementById('scroll-progress-bar');
+    const hintDay1 = document.getElementById('hint-day1');
+    const hintDay2 = document.getElementById('hint-day2');
 
-    if (!seal || !scroll1) return;
+    if (!container || !track || slides.length < 2) return;
 
-    seal.addEventListener('click', (e) => {
-      if (this.day1Unsealed) return;
-      this.day1Unsealed = true;
+    // Keep judges arena hidden offscreen
+    if (this.battleScene && typeof this.battleScene.setJudgesArenaVisibility === 'function') {
+      this.battleScene.setJudgesArenaVisibility(false);
+    }
 
-      battleAudio.playSlash();
-      battleAudio.playUnroll();
+    const onScroll = () => {
+      const rect = container.getBoundingClientRect();
+      const totalScrollable = container.offsetHeight - window.innerHeight;
+      if (totalScrollable <= 0) return;
 
-      // Golden particle burst from seal
-      const rect = seal.getBoundingClientRect();
-      confetti({
-        particleCount: 50,
-        spread: 70,
-        origin: {
-          x: (rect.left + rect.width / 2) / window.innerWidth,
-          y: (rect.top + rect.height / 2) / window.innerHeight
-        },
-        colors: ['#f59e0b', '#fbbf24', '#d97706', '#ffffff']
-      });
+      const scrolled = -rect.top;
+      const progress = Math.min(Math.max(scrolled / totalScrollable, 0), 1);
 
-      scroll1.classList.add('unsealed');
+      const slide1 = slides[0];
+      const slide2 = slides[1];
+      const viewportWidth = window.innerWidth;
 
-      // Scroll smoothly to Day 1 details
-      setTimeout(() => {
-        scroll1.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }, 350);
-    });
-  }
+      // Center Slide 1 when progress = 0
+      const slide1Width = slide1.offsetWidth;
+      const startX = (viewportWidth - slide1Width) / 2;
 
-  // --- DAY 02: 3-CHAIN BREAK MECHANIC ---
-  initDay2Chains() {
-    const chainLinks = document.querySelectorAll('.chain-item');
-    const scroll2 = document.getElementById('day2-scroll');
-    const chainPrompt = document.getElementById('chains-prompt-sub');
+      // Center Slide 2 when progress = 1
+      const slide2Width = slide2.offsetWidth;
+      const endX = (viewportWidth / 2) - (slide2.offsetLeft + slide2Width / 2);
 
-    if (!scroll2 || !chainLinks.length) return;
+      // Smoothly interpolate between startX (Day 1 centered) and endX (Day 2 centered)
+      const currentX = startX + progress * (endX - startX);
+      track.style.transform = `translate3d(${currentX}px, 0, 0)`;
 
-    chainLinks.forEach((chain) => {
-      chain.addEventListener('click', () => {
-        if (chain.classList.contains('broken')) return;
+      if (progressBar) {
+        progressBar.style.width = `${progress * 100}%`;
+      }
 
-        chain.classList.add('broken');
-        this.day2ChainsRemaining--;
-
-        battleAudio.playChainBreak();
-
-        // Chain sparks
-        const rect = chain.getBoundingClientRect();
-        confetti({
-          particleCount: 25,
-          spread: 45,
-          origin: {
-            x: (rect.left + rect.width / 2) / window.innerWidth,
-            y: (rect.top + rect.height / 2) / window.innerHeight
-          },
-          colors: ['#00f0ff', '#38bdf8', '#94a3b8', '#ffffff']
-        });
-
-        if (this.day2ChainsRemaining > 0) {
-          if (chainPrompt) {
-            chainPrompt.textContent = `⚔️ SLASH REMAINING CHAINS: ${this.day2ChainsRemaining} LEFT`;
-          }
+      if (hintDay1 && hintDay2) {
+        if (progress > 0.45) {
+          hintDay1.classList.remove('active');
+          hintDay2.classList.add('active');
         } else {
-          // All 3 chains broken! Explosive Unseal!
-          battleAudio.playClash();
-          battleAudio.playUnroll();
-
-          confetti({
-            particleCount: 120,
-            spread: 100,
-            origin: {
-              x: (rect.left + rect.width / 2) / window.innerWidth,
-              y: (rect.top + rect.height / 2) / window.innerHeight
-            },
-            colors: ['#00f0ff', '#f59e0b', '#ffffff', '#38bdf8']
-          });
-
-          scroll2.classList.add('unsealed');
-          if (this.battleScene) {
-            this.battleScene.setJudgesArenaVisibility(true);
-          }
-
-          setTimeout(() => {
-            scroll2.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-          }, 350);
+          hintDay1.classList.add('active');
+          hintDay2.classList.remove('active');
         }
+      }
+    };
+
+    if (hintDay1) {
+      hintDay1.style.pointerEvents = 'auto';
+      hintDay1.style.cursor = 'pointer';
+      hintDay1.addEventListener('click', () => {
+        const containerTop = container.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({ top: containerTop, behavior: 'smooth' });
       });
-    });
+    }
+    if (hintDay2) {
+      hintDay2.style.pointerEvents = 'auto';
+      hintDay2.style.cursor = 'pointer';
+      hintDay2.addEventListener('click', () => {
+        const containerTop = container.getBoundingClientRect().top + window.pageYOffset;
+        const target = containerTop + container.offsetHeight - window.innerHeight;
+        window.scrollTo({ top: target, behavior: 'smooth' });
+      });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(onScroll);
+    }
+    requestAnimationFrame(onScroll);
   }
 
   // --- 24-HOUR BATTLE CLOCK & DEVELOPMENT STATIONS ---
@@ -153,7 +135,7 @@ export class ScrollManager {
         const snippet = snippets[techName] || 'code.execute();';
 
         if (toast) {
-          toast.innerHTML = `<span style="color:#00f0ff;">&gt; WEAPON DISCHARGED [${techName}]</span><br><code>${snippet}</code>`;
+          toast.innerHTML = `<span style="color:#ffe600;">&gt; WEAPON DISCHARGED [${techName}]</span><br><code>${snippet}</code>`;
           toast.classList.add('visible');
           setTimeout(() => toast.classList.remove('visible'), 3200);
         }
@@ -166,7 +148,7 @@ export class ScrollManager {
             x: (rect.left + rect.width / 2) / window.innerWidth,
             y: (rect.top + rect.height / 2) / window.innerHeight
           },
-          colors: ['#00f0ff', '#f59e0b']
+          colors: ['#ffe600', '#ffffff']
         });
       });
     });

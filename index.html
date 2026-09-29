@@ -13,29 +13,42 @@
   <!-- Three.js 3D WebGL Background Canvas -->
   <div id="three-canvas-container"></div>
 
-  <!-- Audio Synthesizer Status Button -->
-  <button id="sound-toggle-btn" class="sound-toggle interactive" data-hud="TOGGLE BATTLE AUDIO">
-    🔊 SOUND: ON
-  </button>
-
   <!-- Code Weapon Strike Toast -->
   <div id="code-strike-toast" class="code-strike-toast"></div>
 
-  <!-- Top Battlefield HUD Bar -->
-  <header class="top-hud-bar">
-    <div class="hud-logo font-cinzel">
-      <span>⚔️</span> CODE YUDH
-    </div>
-    <nav class="hud-nav">
-      <a href="#about-section" class="hud-link interactive" data-hud="THE BATTLE MISSION">THE BATTLE</a>
+  <!-- Top Battlefield HUD Hanging Bar -->
+  <header class="top-hud-bar hanging-navbar">
+    <a href="#" class="hud-logo interactive" data-hud="SCROLL TO TOP">
+      <span>CODE YUDH</span>
+    </a>
+
+    <div class="hud-divider"></div>
+
+    <nav class="hud-nav" id="hud-nav">
+      <a href="#about-section" class="hud-link active interactive" data-hud="THE BATTLE MISSION">THE BATTLE</a>
       <a href="#scrolls-anchor" class="hud-link interactive" data-hud="DAY 01 & 02 SCROLLS">BATTLE SCROLLS</a>
       <a href="#battlefields-section" class="hud-link interactive" data-hud="6 TRACK TERRITORIES">BATTLEFIELDS</a>
       <a href="#arsenal-section" class="hud-link interactive" data-hud="WEAPONS & TECH">ARSENAL</a>
       <a href="#chronicle-section" class="hud-link interactive" data-hud="EVENT TIMELINE">CHRONICLE</a>
       <a href="#faq-section" class="hud-link interactive" data-hud="WAR TABLETS FAQ">FAQ</a>
     </nav>
-    <button class="open-reg-modal boom-btn interactive" data-hud="REGISTER YOUR SQUAD" style="padding: 8px 20px; font-size: 13px;">
-      ⚔️ ENTER BATTLE
+
+    <div class="hud-divider"></div>
+
+    <!-- Audio Synthesizer Status Button (Icon Only) -->
+    <button id="sound-toggle-btn" class="sound-toggle interactive" data-hud="TOGGLE BATTLE AUDIO" aria-label="Toggle Battle Sound">
+      <svg class="inline-icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+    </button>
+
+    <button class="open-reg-modal boom-btn hud-cta interactive" data-hud="REGISTER YOUR SQUAD">
+      <svg class="svg-icon icon-sm" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+      <span>ENTER BATTLE</span>
+    </button>
+
+    <button id="hud-mobile-toggle" class="hud-mobile-toggle interactive" data-hud="TOGGLE MENU" aria-label="Toggle navigation menu">
+      <span></span>
+      <span></span>
+      <span></span>
     </button>
   </header>
 
@@ -54,15 +67,17 @@
     <!-- Overlay controls over video -->
     <div class="intro-video-controls">
       <div class="intro-video-status font-mono">
-        ⚡ BATTLE SINGULARITY INCOMING // CLASH AT IMPACT
+        <span class="pulse-indicator"></span> BATTLE SINGULARITY INCOMING // CLASH AT IMPACT
       </div>
 
       <div class="intro-actions">
         <button id="trigger-boom-btn" class="boom-btn interactive" data-hud="EXECUTE CLASH BOOM">
-          💥 TRIGGER BOOM & ENTER
+          <svg class="svg-icon icon-sm" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          TRIGGER BOOM & ENTER
         </button>
         <button id="skip-intro-btn" class="skip-intro interactive" data-hud="ENTER DIRECTLY">
-          SKIP TO SCROLL ⏩
+          SKIP TO SCROLL
+          <svg class="svg-icon icon-sm" viewBox="0 0 24 24"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19"></line></svg>
         </button>
       </div>
     </div>
@@ -73,240 +88,345 @@
   ========================================================== -->
   <main id="main-battlefield">
 
-    <!-- Hero Header -->
+    <!-- Hero Header (Minimalist & Centered) -->
     <div id="about-section" class="hero-scroll-intro">
-      <div class="hero-badge font-mono">
-        🏛️ DEPARTMENT OF COMPUTER SCIENCE & ENGINEERING · CHANDIGARH UNIVERSITY
-      </div>
-      <h1 class="battle-title font-cinzel">CODE YUDH</h1>
-      <p class="battle-subtitle">BATTLE OF CODES — 24-HOUR HYBRID SOFTWARE HACKATHON</p>
-      
-      <div class="battle-meta">
-        <div class="meta-item"><span>🗓️</span> <b>27–28 OCTOBER 2026</b></div>
-        <div class="meta-item"><span>📍</span> <b>CHANDIGARH UNIVERSITY, MOHALI</b></div>
-        <div class="meta-item"><span>👥</span> <b>3–4 WARRIORS / SQUAD</b></div>
-        <div class="meta-item"><span>🎓</span> <b>UNDERGRADUATE ENGINEERS</b></div>
+      <div class="hero-logo-wrap">
+        <img src="/assets/code_yudh_logo.png" alt="CODE YUDH — Battle of Codes Hackathon" class="hero-event-logo" />
       </div>
 
-      <p style="max-width: 800px; margin: 24px auto 0; font-size: 17px; color: var(--text-muted); line-height: 1.6;">
-        <i style="color: var(--bright-amber);">"Bring your ideas. Build your solution. Battle with code."</i><br>
-        A premier hybrid hackathon bringing together creative, technically skilled, and innovative minds to solve real-world challenges through technology.
+      <p class="battle-subtitle font-cinzel">BATTLE OF CODES — 24-HOUR HYBRID SOFTWARE HACKATHON</p>
+      
+      <p class="hero-date font-mono">
+        27–28 OCTOBER 2026 &nbsp;·&nbsp; CHANDIGARH UNIVERSITY, MOHALI
       </p>
+
+      <!-- Hero Action CTAs -->
+      <div class="hero-cta-group">
+        <button class="open-reg-modal boom-btn hero-main-cta interactive" data-hud="REGISTER FOR CODE YUDH">
+          <svg class="svg-icon icon-sm" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          <span>ENTER THE BATTLE</span>
+        </button>
+        <a href="#battlefields-section" class="hero-explore-btn interactive" data-hud="EXPLORE TRACKS">
+          <svg class="svg-icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
+          <span>EXPLORE BATTLEFIELDS</span>
+        </a>
+      </div>
+
+      <!-- Bottom Right: Scroll To Explore Tag -->
+      <a href="#scrolls-anchor" class="hero-scroll-tag font-mono interactive" data-hud="SCROLL TO EXPLORE">
+        <span class="scroll-tag-bracket">[</span>
+        <span class="scroll-tag-text">SCROLL TO EXPLORE</span>
+        <span class="scroll-tag-arrow">↓</span>
+        <span class="scroll-tag-bracket">]</span>
+      </a>
     </div>
 
     <!-- ==========================================================
-         3. THE DUAL BATTLE SCROLLS (CENTRAL INTERACTIVE ENGINE)
+         3. DUAL BATTLE SCROLLS — HORIZONTAL SCROLL (DAY 01 ➔ DAY 02)
     ========================================================== -->
-    <div id="scrolls-anchor" class="scrolls-stage">
-
-      <!-- 📜 DAY 01 SCROLL: THE CALL TO BATTLE -->
-      <div id="day1-scroll" class="battle-scroll">
-        <div class="scroll-rod-top"></div>
-
-        <!-- Sealed Overlay: Royal Wax Seal -->
-        <div class="scroll-seal-overlay">
-          <div id="day1-wax-seal" class="wax-seal seal-trigger interactive" data-hud="⚔️ SLASH WAX SEAL TO UNROLL">
-            <span class="wax-seal-icon">📜</span>
-            <span class="wax-seal-text">UNSEAL</span>
-          </div>
-          <h3 class="seal-prompt font-cinzel">DAY 01: THE CALL TO BATTLE</h3>
-          <p class="seal-subprompt font-mono">⚔️ CLICK / SLASH THE SEAL TO UNROLL PARCHMENT</p>
-        </div>
-
-        <!-- Unsealed Day 1 Content (Ancient Ink on Parchment) -->
-        <div class="scroll-inner">
-          <div class="parchment-pattern"></div>
+    <section id="scrolls-anchor" class="horizontal-scroll-section">
+      <div class="horizontal-scroll-sticky">
+        
+        <!-- Track moving horizontally from Day 01 to Day 02 -->
+        <div class="horizontal-scroll-track" id="horizontal-scroll-track">
           
-          <div class="scroll-header">
-            <div class="scroll-phase-tag font-mono">PHASE 01 — ONLINE SCREENING</div>
-            <h2 class="scroll-day-title font-cinzel">DAY 01: THE CALL TO BATTLE</h2>
-            <div class="scroll-date-badge">
-              📅 11 OCTOBER 2026, 12:00 AM IST &nbsp;➔&nbsp; 14 OCTOBER 2026, 11:59 PM IST
-            </div>
-          </div>
+          <!-- Slide 1: DAY 01 -->
+          <article id="day1-scroll" class="scroll-slide day1-slide brutal-slide">
+            <div class="slide-content">
+              <div class="scroll-header brutal-header">
+                <div class="brutal-meta-row font-mono">
+                  <span class="brutal-badge">PHASE 01 // ONLINE SCREENING</span>
+                  <span class="brutal-schedule">11 OCT 2026, 00:00 IST &nbsp;➔&nbsp; 14 OCT 2026, 23:59 IST</span>
+                </div>
+                <h2 class="brutal-title">DAY 01: THE CALL TO BATTLE</h2>
+              </div>
 
-          <div class="mission-box">
-            <h4 class="mission-title font-cinzel">YOUR MISSION: PPT PROPOSAL</h4>
-            <p style="font-size: 13.5px; color: var(--ancient-ink); margin-bottom: 12px; font-weight: 500;">
-              Submit a comprehensive presentation outlining your team's battle plan:
-            </p>
-            <ul class="mission-list">
-              <li><b>Problem Statement:</b> Identify a critical real-world friction point.</li>
-              <li><b>Proposed Solution:</b> Formulate an innovative technology-driven fix.</li>
-              <li><b>Innovation:</b> What makes your solution novel and differentiated?</li>
-              <li><b>Technology Approach:</b> Your architecture, algorithms, and tools.</li>
-            </ul>
-            <div style="margin-top: 10px; font-size: 12px; color: var(--battle-bronze); font-weight: 700;">
-              ⭐ Optional additions: Working Prototype, Video Demo, or GitHub Repository link.
-            </div>
-          </div>
+              <div class="slide-two-col">
+                <!-- Left Column: Mission Protocol -->
+                <div class="slide-col-left">
+                  <div class="brutal-panel">
+                    <div class="brutal-panel-head font-mono">
+                      <span class="brutal-panel-title">// 01. MISSION PROTOCOL: PPT PROPOSAL</span>
+                    </div>
+                    <p class="brutal-subtext">
+                      Submit a technical proposal presentation outlining your team's battle plan:
+                    </p>
+                    <div class="brutal-spec-list font-mono">
+                      <div class="brutal-spec-item">
+                        <span class="spec-idx">[01]</span>
+                        <div class="spec-info">
+                          <b>PROBLEM STATEMENT</b>
+                          <p>Identify a critical real-world friction point.</p>
+                        </div>
+                      </div>
+                      <div class="brutal-spec-item">
+                        <span class="spec-idx">[02]</span>
+                        <div class="spec-info">
+                          <b>PROPOSED SOLUTION</b>
+                          <p>Formulate an innovative technology-driven fix.</p>
+                        </div>
+                      </div>
+                      <div class="brutal-spec-item">
+                        <span class="spec-idx">[03]</span>
+                        <div class="spec-info">
+                          <b>INNOVATION VECTOR</b>
+                          <p>Novel, differentiated, and defensible architecture.</p>
+                        </div>
+                      </div>
+                      <div class="brutal-spec-item">
+                        <span class="spec-idx">[04]</span>
+                        <div class="spec-info">
+                          <b>TECHNICAL APPROACH</b>
+                          <p>Algorithms, data flow, infrastructure, and toolchain.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="brutal-note font-mono">
+                      &gt; OPTIONAL ENHANCEMENT: Working prototype, demo video, or GitHub repo links are welcomed.
+                    </div>
+                  </div>
+                </div>
 
-          <h4 class="font-cinzel" style="font-size: 16px; color: var(--battle-bronze); margin-bottom: 10px; font-weight: 900;">
-            THE FOUR JUDGEMENT SEALS
-          </h4>
-          <div class="judgement-seals-grid">
-            <div class="seal-card interactive" data-hud="CRITERIA 1: INNOVATION">
-              <div class="seal-card-num font-mono">CRITERIA 01</div>
-              <div class="seal-card-name">⚔️ INNOVATION</div>
-              <p class="seal-card-desc">How innovative, bold, and original is the proposed solution?</p>
-            </div>
-            <div class="seal-card interactive" data-hud="CRITERIA 2: FEASIBILITY">
-              <div class="seal-card-num font-mono">CRITERIA 02</div>
-              <div class="seal-card-name">🛡️ FEASIBILITY</div>
-              <p class="seal-card-desc">Can the solution realistically be developed and deployed in 24 hours?</p>
-            </div>
-            <div class="seal-card interactive" data-hud="CRITERIA 3: TECHNICAL APPROACH">
-              <div class="seal-card-num font-mono">CRITERIA 03</div>
-              <div class="seal-card-name">⚙️ TECHNICAL APPROACH</div>
-              <p class="seal-card-desc">How effectively and deeply does the chosen tech stack address the core problem?</p>
-            </div>
-            <div class="seal-card interactive" data-hud="CRITERIA 4: POTENTIAL IMPACT">
-              <div class="seal-card-num font-mono">CRITERIA 04</div>
-              <div class="seal-card-name">🌍 POTENTIAL IMPACT</div>
-              <p class="seal-card-desc">What tangible societal, commercial, or humanitarian value will it generate?</p>
-            </div>
-          </div>
+                <!-- Right Column: Evaluation Matrix -->
+                <div class="slide-col-right">
+                  <div class="brutal-panel">
+                    <div class="brutal-panel-head font-mono">
+                      <span class="brutal-panel-title">// 02. EVALUATION MATRIX (4 CRITERIA)</span>
+                    </div>
+                    <div class="brutal-matrix-grid">
+                      <div class="brutal-matrix-card">
+                        <div class="matrix-top font-mono">
+                          <span class="matrix-id">[01]</span>
+                          <svg class="inline-icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+                        </div>
+                        <div class="matrix-title">INNOVATION</div>
+                        <p class="matrix-desc">Boldness, originality, and differentiation.</p>
+                      </div>
+                      <div class="brutal-matrix-card">
+                        <div class="matrix-top font-mono">
+                          <span class="matrix-id">[02]</span>
+                          <svg class="inline-icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                        </div>
+                        <div class="matrix-title">FEASIBILITY</div>
+                        <p class="matrix-desc">Viable execution within 24 hours.</p>
+                      </div>
+                      <div class="brutal-matrix-card">
+                        <div class="matrix-top font-mono">
+                          <span class="matrix-id">[03]</span>
+                          <svg class="inline-icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                        </div>
+                        <div class="matrix-title">TECH STACK</div>
+                        <p class="matrix-desc">Architecture and technology depth.</p>
+                      </div>
+                      <div class="brutal-matrix-card">
+                        <div class="matrix-top font-mono">
+                          <span class="matrix-id">[04]</span>
+                          <svg class="inline-icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                        </div>
+                        <div class="matrix-title">IMPACT</div>
+                        <p class="matrix-desc">Tangible real-world societal value.</p>
+                      </div>
+                    </div>
 
-          <div class="screening-seal-banner">
-            <h5>⚔️ SCREENING COMPLETE</h5>
-            <p>Shortlisted warrior squads advance directly to the 24-Hour Offline Arena!</p>
-          </div>
+                    <div class="brutal-advance-strip font-mono">
+                      <span class="advance-arrow">➔</span>
+                      <div>
+                        <b>ADVANCEMENT PROTOCOL:</b> Shortlisted warrior squads advance directly to the 24-Hour Offline Arena at Chandigarh University.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Slide 2: DAY 02 -->
+          <article id="day2-scroll" class="scroll-slide day2-slide brutal-slide">
+            <div class="slide-content">
+              <div class="scroll-header brutal-header">
+                <div class="brutal-meta-row font-mono">
+                  <span class="brutal-badge">PHASE 02 // OFFLINE FINALE</span>
+                  <span class="brutal-schedule">27 OCT 2026, 08:30 IST &nbsp;➔&nbsp; 28 OCT 2026, 17:00 IST</span>
+                </div>
+                <h2 class="brutal-title">DAY 02: THE FINAL YUDH</h2>
+              </div>
+
+              <div class="slide-two-col">
+                <!-- Left Column: Arena Mission -->
+                <div class="slide-col-left">
+                  <div class="brutal-panel">
+                    <div class="brutal-panel-head font-mono">
+                      <span class="brutal-panel-title">// 01. ARENA PROTOCOL: 24-HOUR SPRINT</span>
+                    </div>
+                    <p class="brutal-subtext">
+                      Venue: <b>Chandigarh University, Mohali</b>. Continuous 24-hour sprint to build functional prototypes:
+                    </p>
+                    <div class="brutal-spec-list font-mono">
+                      <div class="brutal-spec-item">
+                        <span class="spec-idx">[01]</span>
+                        <div class="spec-info">
+                          <b>BUILD PHASE</b>
+                          <p>Develop functional code and hardware integrations.</p>
+                        </div>
+                      </div>
+                      <div class="brutal-spec-item">
+                        <span class="spec-idx">[02]</span>
+                        <div class="spec-info">
+                          <b>TEST PHASE</b>
+                          <p>Continuous integration, unit validation, and stress-testing.</p>
+                        </div>
+                      </div>
+                      <div class="brutal-spec-item">
+                        <span class="spec-idx">[03]</span>
+                        <div class="spec-info">
+                          <b>REFINE PHASE</b>
+                          <p>UI/UX polish and direct mentor code reviews.</p>
+                        </div>
+                      </div>
+                      <div class="brutal-spec-item">
+                        <span class="spec-idx">[04]</span>
+                        <div class="spec-info">
+                          <b>DEMONSTRATE</b>
+                          <p>Live jury presentation and technical defense.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="brutal-note font-mono">
+                      &gt; ARENA FACILITY: On-site workstations, high-speed mesh network, and mentor support provided.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Right Column: Final Evaluation Pillars & Glory -->
+                <div class="slide-col-right">
+                  <div class="brutal-panel">
+                    <div class="brutal-panel-head font-mono">
+                      <span class="brutal-panel-title">// 02. FINAL EVALUATION PILLARS</span>
+                    </div>
+                    <div class="brutal-matrix-grid">
+                      <div class="brutal-matrix-card">
+                        <div class="matrix-top font-mono">
+                          <span class="matrix-id">[01]</span>
+                          <svg class="inline-icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        </div>
+                        <div class="matrix-title">INNOVATION</div>
+                        <p class="matrix-desc">Originality and creative audacity.</p>
+                      </div>
+                      <div class="brutal-matrix-card">
+                        <div class="matrix-top font-mono">
+                          <span class="matrix-id">[02]</span>
+                          <svg class="inline-icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+                        </div>
+                        <div class="matrix-title">IMPLEMENTATION</div>
+                        <p class="matrix-desc">Code quality and technical depth.</p>
+                      </div>
+                      <div class="brutal-matrix-card">
+                        <div class="matrix-top font-mono">
+                          <span class="matrix-id">[03]</span>
+                          <svg class="inline-icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                        </div>
+                        <div class="matrix-title">FUNCTIONALITY</div>
+                        <p class="matrix-desc">Working features demonstrated live.</p>
+                      </div>
+                      <div class="brutal-matrix-card">
+                        <div class="matrix-top font-mono">
+                          <span class="matrix-id">[04]</span>
+                          <svg class="inline-icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                        </div>
+                        <div class="matrix-title">IMPACT</div>
+                        <p class="matrix-desc">Scalability and practical utility.</p>
+                      </div>
+                    </div>
+
+                    <div class="brutal-advance-strip font-mono">
+                      <span class="advance-arrow">★</span>
+                      <div>
+                        <b>GLORY & RECOGNITION:</b> Cash prize pool, winner trophies, incubation access, and recruitment summons.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
         </div>
 
-        <div class="scroll-rod-bottom"></div>
+        <!-- Minimalist Horizontal Navigation Indicator -->
+        <div class="horizontal-nav-hint font-mono">
+          <span id="hint-day1" class="hint-dot active">DAY 01: CALL TO BATTLE</span>
+          <div class="hint-track"><div id="scroll-progress-bar" class="hint-bar"></div></div>
+          <span id="hint-day2" class="hint-dot">DAY 02: THE FINAL YUDH</span>
+        </div>
+
       </div>
-
-      <!-- 📜 DAY 02 SCROLL: THE FINAL YUDH -->
-      <div id="day2-scroll" class="battle-scroll" style="border-color: var(--aged-metal);">
-        <div class="scroll-rod-top"></div>
-
-        <!-- Sealed Overlay: 3 Heavy Forged Chains -->
-        <div class="scroll-seal-overlay">
-          <div class="chains-container">
-            <div class="chain-item interactive" data-hud="⚔️ SLASH CHAIN 1">
-              <span style="font-size: 20px;">⛓️</span>
-            </div>
-            <div class="chain-item interactive" data-hud="⚔️ SLASH CHAIN 2">
-              <span style="font-size: 20px;">⛓️</span>
-            </div>
-            <div class="chain-item interactive" data-hud="⚔️ SLASH CHAIN 3">
-              <span style="font-size: 20px;">⛓️</span>
-            </div>
-          </div>
-          <h3 class="seal-prompt font-cinzel">DAY 02: THE FINAL YUDH</h3>
-          <p id="chains-prompt-sub" class="seal-subprompt font-mono">⚔️ SLASH ALL 3 CHAINS TO UNLEASH THE 24-HR WAR</p>
-        </div>
-
-        <!-- Unsealed Day 2 Content (Ancient Ink on Parchment) -->
-        <div class="scroll-inner">
-          <div class="parchment-pattern"></div>
-          
-          <div class="scroll-header">
-            <div class="scroll-phase-tag font-mono">PHASE 02 — OFFLINE FINALE</div>
-            <h2 class="scroll-day-title font-cinzel">DAY 02: THE FINAL YUDH</h2>
-            <div class="scroll-date-badge">
-              📅 27 OCT, 08:30 AM IST &nbsp;➔&nbsp; 28 OCT, 05:00 PM IST
-            </div>
-          </div>
-
-          <div class="mission-box">
-            <h4 class="mission-title font-cinzel">THE 24-HOUR BATTLEFIELD ARENA</h4>
-            <p style="font-size: 13.5px; color: var(--ancient-ink); margin-bottom: 12px; font-weight: 500;">
-              Venue: <b>Chandigarh University, Mohali</b>. Shortlisted squads assemble for a continuous 24-hour sprint to transform ideas into working prototypes.
-            </p>
-            <ul class="mission-list">
-              <li><b>Build:</b> Develop functional code and hardware integrations.</li>
-              <li><b>Test:</b> Continuous integration, edge case validation, and stress-testing.</li>
-              <li><b>Refine:</b> UI/UX polish, mentor feedback implementation, performance tuning.</li>
-              <li><b>Demonstrate:</b> Live presentation before judges and industry juries.</li>
-            </ul>
-          </div>
-
-          <h4 class="font-cinzel" style="font-size: 16px; color: var(--battle-bronze); margin-bottom: 10px; font-weight: 900;">
-            FINAL EVALUATION PILLARS
-          </h4>
-          <div class="judgement-seals-grid">
-            <div class="seal-card interactive" data-hud="PHASE 2 PILLAR 1">
-              <div class="seal-card-num font-mono">PILLAR 01</div>
-              <div class="seal-card-name">🌟 INNOVATION</div>
-              <p class="seal-card-desc">Originality, creative audacity, and uniqueness of execution.</p>
-            </div>
-            <div class="seal-card interactive" data-hud="PHASE 2 PILLAR 2">
-              <div class="seal-card-num font-mono">PILLAR 02</div>
-              <div class="seal-card-name">💻 IMPLEMENTATION</div>
-              <p class="seal-card-desc">Code quality, architectural robustness, and depth of technical build.</p>
-            </div>
-            <div class="seal-card interactive" data-hud="PHASE 2 PILLAR 3">
-              <div class="seal-card-num font-mono">PILLAR 03</div>
-              <div class="seal-card-name">⚡ FUNCTIONALITY</div>
-              <p class="seal-card-desc">Real demonstrable working features during live jury interrogation.</p>
-            </div>
-            <div class="seal-card interactive" data-hud="PHASE 2 PILLAR 4">
-              <div class="seal-card-num font-mono">PILLAR 04</div>
-              <div class="seal-card-name">🎯 IMPACT</div>
-              <p class="seal-card-desc">Scalability, user viability, and quantifiable real-world efficacy.</p>
-            </div>
-          </div>
-
-          <div class="screening-seal-banner">
-            <h5>🏆 GLORY & RECOGNITION</h5>
-            <p>Cash prizes, trophies, direct incubation access, and industry recruitment opportunities!</p>
-          </div>
-        </div>
-
-        <div class="scroll-rod-bottom"></div>
-      </div>
-
-    </div>
+    </section>
 
     <!-- ==========================================================
          4. 24-HOUR BATTLE CLOCK & DEVELOPMENT STATIONS
     ========================================================== -->
     <section class="battlefield-24h-section">
       <div class="section-head">
-        <div class="section-tag">RUNTIME ENGINE</div>
-        <h2 class="section-title">THE 24-HOUR BATTLE CYCLE</h2>
+        <div class="section-tag font-mono">RUNTIME ENGINE</div>
+        <h2 class="section-title font-cinzel">THE 24-HOUR BATTLE CYCLE</h2>
         <p class="section-desc">From Idea to Impact: 4 development combat stations marking your progression.</p>
       </div>
 
-      <!-- 24-Hour Circular Battle Clock HUD -->
-      <div class="battle-clock-hud">
-        <div class="clock-rim">
-          <div class="clock-center">
-            <div class="clock-hours">24:00:00</div>
-            <div class="clock-sub">NON-STOP WAR</div>
+      <div class="cycle-bento-layout">
+        <!-- 24-Hour Circular Battle Clock HUD as Left Bento Cell -->
+        <div class="battle-clock-bento-card">
+          <div class="battle-clock-hud">
+            <div class="clock-rim">
+              <div class="clock-center">
+                <div class="clock-hours">24:00:00</div>
+                <div class="clock-sub">NON-STOP WAR</div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-
-      <!-- 4 Development Stations -->
-      <div class="stations-grid">
-        <div class="station-card interactive" data-hud="STATION 1: BUILD">
-          <div class="station-num">STATION 01</div>
-          <h3 class="station-name">⚔️ BUILD</h3>
-          <p class="station-desc">Transform your proposed idea into a working software & hardware solution.</p>
-          <div class="station-telemetry font-mono">&gt; status: ASSEMBLING_MODULES [OK]</div>
+          <div class="clock-telemetry font-mono">&gt; STATUS: ENGINE_ACTIVE // 4_STATIONS_READY</div>
         </div>
 
-        <div class="station-card interactive" data-hud="STATION 2: TEST">
-          <div class="station-num">STATION 02</div>
-          <h3 class="station-name">🛡️ TEST</h3>
-          <p class="station-desc">Test your implementation, stress-test API endpoints, and identify edge issues.</p>
-          <div class="station-telemetry font-mono">&gt; telemetry: 0 ERRORS DETECTED</div>
-        </div>
+        <!-- 4 Development Stations in 2x2 Bento Grid -->
+        <div class="stations-grid">
+          <div class="station-card interactive" data-hud="STATION 1: BUILD">
+            <div class="station-top">
+              <span class="station-num font-mono">STATION 01</span>
+              <span class="station-icon"><svg class="inline-icon icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+            </div>
+            <h3 class="station-name font-cinzel">BUILD</h3>
+            <p class="station-desc">Transform your proposed idea into a working software & hardware solution.</p>
+            <div class="station-telemetry font-mono">&gt; status: ASSEMBLING_MODULES [OK]</div>
+          </div>
 
-        <div class="station-card interactive" data-hud="STATION 3: REFINE">
-          <div class="station-num">STATION 03</div>
-          <h3 class="station-name">⚙️ REFINE</h3>
-          <p class="station-desc">Upgrade and optimize your solution based on live testing and mentor reviews.</p>
-          <div class="station-telemetry font-mono">&gt; system: OPTIMIZING_LATENCY [99.4%]</div>
-        </div>
+          <div class="station-card interactive" data-hud="STATION 2: TEST">
+            <div class="station-top">
+              <span class="station-num font-mono">STATION 02</span>
+              <span class="station-icon"><svg class="inline-icon icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></span>
+            </div>
+            <h3 class="station-name font-cinzel">TEST</h3>
+            <p class="station-desc">Test your implementation, stress-test API endpoints, and identify edge issues.</p>
+            <div class="station-telemetry font-mono">&gt; telemetry: 0 ERRORS DETECTED</div>
+          </div>
 
-        <div class="station-card interactive" data-hud="STATION 4: DEMONSTRATE">
-          <div class="station-num">STATION 04</div>
-          <h3 class="station-name">🌟 DEMONSTRATE</h3>
-          <p class="station-desc">Present your functional prototype before the judging panel and industry leaders.</p>
-          <div class="station-telemetry font-mono">&gt; arena: JURY_SHOWCASE_ACTIVE</div>
+          <div class="station-card interactive" data-hud="STATION 3: REFINE">
+            <div class="station-top">
+              <span class="station-num font-mono">STATION 03</span>
+              <span class="station-icon"><svg class="inline-icon icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>
+            </div>
+            <h3 class="station-name font-cinzel">REFINE</h3>
+            <p class="station-desc">Upgrade and optimize your solution based on live testing and mentor reviews.</p>
+            <div class="station-telemetry font-mono">&gt; system: OPTIMIZING_LATENCY [99.4%]</div>
+          </div>
+
+          <div class="station-card interactive" data-hud="STATION 4: DEMONSTRATE">
+            <div class="station-top">
+              <span class="station-num font-mono">STATION 04</span>
+              <span class="station-icon"><svg class="inline-icon icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></span>
+            </div>
+            <h3 class="station-name font-cinzel">DEMONSTRATE</h3>
+            <p class="station-desc">Present your functional prototype before the judging panel and industry leaders.</p>
+            <div class="station-telemetry font-mono">&gt; arena: JURY_SHOWCASE_ACTIVE</div>
+          </div>
         </div>
       </div>
     </section>
@@ -325,7 +445,7 @@
         <!-- 01 Smart Cities -->
         <div class="territory-card track-card interactive" data-hud="TERRITORY 01: SMART CITIES">
           <div class="territory-num">TERRITORY 01</div>
-          <h3 class="territory-name">🏙️ SMART & SUSTAINABLE CITIES</h3>
+          <h3 class="territory-name"><svg class="inline-icon icon-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/><line x1="8" y1="6" x2="8.01" y2="6"/><line x1="16" y1="6" x2="16.01" y2="6"/><line x1="12" y1="6" x2="12.01" y2="6"/><line x1="12" y1="10" x2="12.01" y2="10"/><line x1="12" y1="14" x2="12.01" y2="14"/><line x1="16" y1="10" x2="16.01" y2="10"/><line x1="16" y1="14" x2="16.01" y2="14"/><line x1="8" y1="10" x2="8.01" y2="10"/><line x1="8" y1="14" x2="8.01" y2="14"/></svg> SMART & SUSTAINABLE CITIES</h3>
           <p class="territory-desc">
             Innovative solutions for urban development, smart governance, digital public services, mobility, waste management, safety, and sustainable infrastructure.
           </p>
@@ -342,7 +462,7 @@
         <!-- 02 AgriTech -->
         <div class="territory-card track-card interactive" data-hud="TERRITORY 02: AGRITECH">
           <div class="territory-num">TERRITORY 02</div>
-          <h3 class="territory-name">🌾 AGRITECH & RURAL TRANSFORMATION</h3>
+          <h3 class="territory-name"><svg class="inline-icon icon-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg> AGRITECH & RURAL TRANSFORMATION</h3>
           <p class="territory-desc">
             Technology-driven solutions aimed at improving agricultural productivity, farmer livelihoods, rural connectivity, and supply-chain efficiency.
           </p>
@@ -360,7 +480,7 @@
         <!-- 03 Healthcare -->
         <div class="territory-card track-card interactive" data-hud="TERRITORY 03: HEALTHCARE">
           <div class="territory-num">TERRITORY 03</div>
-          <h3 class="territory-name">🧬 HEALTHCARE, WELLBEING & ASSISTIVE TECH</h3>
+          <h3 class="territory-name"><svg class="inline-icon icon-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M12 5v14"/></svg> HEALTHCARE, WELLBEING & ASSISTIVE TECH</h3>
           <p class="territory-desc">
             Affordable and accessible technology solutions addressing healthcare delivery, preventive care, wellness, accessibility, and assistive needs.
           </p>
@@ -377,7 +497,7 @@
         <!-- 04 Education -->
         <div class="territory-card track-card interactive" data-hud="TERRITORY 04: EDUCATION">
           <div class="territory-num">TERRITORY 04</div>
-          <h3 class="territory-name">🎓 EDUCATION, SKILLING & FUTURE OF WORK</h3>
+          <h3 class="territory-name"><svg class="inline-icon icon-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg> EDUCATION, SKILLING & FUTURE OF WORK</h3>
           <p class="territory-desc">
             Innovative platforms and technologies that improve learning, skill development, employability, and the future of education and work.
           </p>
@@ -394,7 +514,7 @@
         <!-- 05 Energy & Climate -->
         <div class="territory-card track-card interactive" data-hud="TERRITORY 05: ENERGY & CLIMATE">
           <div class="territory-num">TERRITORY 05</div>
-          <h3 class="territory-name">⚡ ENERGY, ENVIRONMENT & CLIMATE ACTION</h3>
+          <h3 class="territory-name"><svg class="inline-icon icon-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> ENERGY, ENVIRONMENT & CLIMATE ACTION</h3>
           <p class="territory-desc">
             Technology-driven solutions for environmental sustainability, clean energy efficiency, climate resilience, and conservation.
           </p>
@@ -411,7 +531,7 @@
         <!-- 06 Open Innovation -->
         <div class="territory-card track-card open-innovation interactive" data-hud="TERRITORY 06: OPEN INNOVATION">
           <div class="territory-num" style="color: var(--vidyut-cyan);">TERRITORY 06</div>
-          <h3 class="territory-name" style="color: var(--plasma-blue);">🌌 OPEN INNOVATION (NO BOUNDARIES)</h3>
+          <h3 class="territory-name" style="color: var(--plasma-blue);"><svg class="inline-icon icon-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg> OPEN INNOVATION (NO BOUNDARIES)</h3>
           <p class="territory-desc">
             An open-ended track for bold, disruptive ideas addressing meaningful real-world challenges beyond defined themes across any domain.
           </p>
@@ -439,62 +559,62 @@
 
       <div class="arsenal-grid">
         <div class="weapon-card interactive" data-hud="FIRE AI/ML">
-          <div class="weapon-icon">🧠</div>
+          <div class="weapon-icon"><svg class="inline-icon icon-xl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg></div>
           <div class="weapon-name">AI / ML</div>
           <div class="weapon-snippet">model.train(yudh)</div>
         </div>
         <div class="weapon-card interactive" data-hud="FIRE GEN AI">
-          <div class="weapon-icon">✨</div>
+          <div class="weapon-icon"><svg class="inline-icon icon-xl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg></div>
           <div class="weapon-name">GENERATIVE AI</div>
           <div class="weapon-snippet">ai.synthesize()</div>
         </div>
         <div class="weapon-card interactive" data-hud="FIRE DATA SCIENCE">
-          <div class="weapon-icon">📊</div>
+          <div class="weapon-icon"><svg class="inline-icon icon-xl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
           <div class="weapon-name">DATA SCIENCE</div>
           <div class="weapon-snippet">pandas.analytics()</div>
         </div>
         <div class="weapon-card interactive" data-hud="FIRE IOT">
-          <div class="weapon-icon">📡</div>
+          <div class="weapon-icon"><svg class="inline-icon icon-xl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></div>
           <div class="weapon-name">IoT</div>
           <div class="weapon-snippet">mesh.broadcast()</div>
         </div>
         <div class="weapon-card interactive" data-hud="FIRE GEOSPATIAL">
-          <div class="weapon-icon">🗺️</div>
+          <div class="weapon-icon"><svg class="inline-icon icon-xl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg></div>
           <div class="weapon-name">GEOSPATIAL</div>
           <div class="weapon-snippet">geo.triangulate()</div>
         </div>
         <div class="weapon-card interactive" data-hud="FIRE CLOUD">
-          <div class="weapon-icon">☁️</div>
+          <div class="weapon-icon"><svg class="inline-icon icon-xl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div>
           <div class="weapon-name">CLOUD</div>
           <div class="weapon-snippet">k8s.deploy(pods)</div>
         </div>
         <div class="weapon-card interactive" data-hud="FIRE BLOCKCHAIN">
-          <div class="weapon-icon">⛓️</div>
+          <div class="weapon-icon"><svg class="inline-icon icon-xl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
           <div class="weapon-name">BLOCKCHAIN</div>
           <div class="weapon-snippet">contract.verify()</div>
         </div>
         <div class="weapon-card interactive" data-hud="FIRE CYBERSECURITY">
-          <div class="weapon-icon">🛡️</div>
+          <div class="weapon-icon"><svg class="inline-icon icon-xl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
           <div class="weapon-name">CYBERSECURITY</div>
           <div class="weapon-snippet">zeroTrust.shield()</div>
         </div>
         <div class="weapon-card interactive" data-hud="FIRE WEB">
-          <div class="weapon-icon">🌐</div>
+          <div class="weapon-icon"><svg class="inline-icon icon-xl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
           <div class="weapon-name">WEB</div>
           <div class="weapon-snippet">dom.render(yudh)</div>
         </div>
         <div class="weapon-card interactive" data-hud="FIRE MOBILE">
-          <div class="weapon-icon">📱</div>
+          <div class="weapon-icon"><svg class="inline-icon icon-xl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
           <div class="weapon-name">MOBILE</div>
           <div class="weapon-snippet">flutter.build()</div>
         </div>
         <div class="weapon-card interactive" data-hud="FIRE ROBOTICS">
-          <div class="weapon-icon">🤖</div>
+          <div class="weapon-icon"><svg class="inline-icon icon-xl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8.01" y2="16"/><line x1="16" y1="16" x2="16.01" y2="16"/></svg></div>
           <div class="weapon-name">ROBOTICS</div>
           <div class="weapon-snippet">servo.actuate()</div>
         </div>
         <div class="weapon-card interactive" data-hud="FIRE VR/AR">
-          <div class="weapon-icon">🥽</div>
+          <div class="weapon-icon"><svg class="inline-icon icon-xl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 10a4 4 0 0 1 4-4h12a4 4 0 0 1 4 4v4a4 4 0 0 1-4 4h-2a2 2 0 0 0-1.6.8l-1 1.4a2 2 0 0 1-3.2 0l-1-1.4a2 2 0 0 0-1.6-.8H6a4 4 0 0 1-4-4v-4z"/><circle cx="8" cy="12" r="2"/><circle cx="16" cy="12" r="2"/></svg></div>
           <div class="weapon-name">VR / AR</div>
           <div class="weapon-snippet">xr.projectHolo()</div>
         </div>
@@ -506,44 +626,56 @@
     ========================================================== -->
     <div class="squad-mentors-grid">
       <!-- Squad Box -->
-      <div class="squad-box">
-        <div class="section-tag">WARRIOR CRITERIA</div>
-        <h3 class="font-cinzel" style="font-size: 24px; color: var(--plasma-white); margin-top: 6px;">FORM YOUR SQUAD</h3>
-        <p style="font-size: 14px; color: var(--text-muted); margin-top: 8px;">
+      <div class="squad-box bento-card">
+        <div class="section-tag font-mono">WARRIOR CRITERIA</div>
+        <h3 class="font-cinzel bento-card-title">FORM YOUR SQUAD</h3>
+        <p class="bento-card-desc">
           Bring together your comrades and prepare to build something real.
         </p>
         <div class="squad-silhouette">
-          <span>⚔️</span>
-          <span>🛡️</span>
-          <span>⚡</span>
-          <span>🏹</span>
+          <span><svg class="inline-icon icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+          <span><svg class="inline-icon icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+          <span><svg class="inline-icon icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
+          <span><svg class="inline-icon icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg></span>
         </div>
-        <div style="background: rgba(0,0,0,0.5); padding: 14px 18px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 13px;">
-          <div>👥 <b>TEAM SIZE:</b> 3–4 Members per Squad</div>
-          <div style="margin-top: 6px;">🎓 <b>ELIGIBILITY:</b> Undergraduate Engineering Students</div>
-          <div style="margin-top: 6px;">🌐 <b>FORMAT:</b> Hybrid (Online PPT + Offline 24H)</div>
+        <div class="squad-details-matrix font-mono">
+          <div class="squad-detail-row">
+            <span class="squad-detail-label"><svg class="inline-icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> TEAM SIZE</span>
+            <span class="squad-detail-val">3–4 Members per Squad</span>
+          </div>
+          <div class="squad-detail-row">
+            <span class="squad-detail-label"><svg class="inline-icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg> ELIGIBILITY</span>
+            <span class="squad-detail-val">Undergraduate Engineering Students</span>
+          </div>
+          <div class="squad-detail-row">
+            <span class="squad-detail-label"><svg class="inline-icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg> FORMAT</span>
+            <span class="squad-detail-val">Hybrid (Online PPT + Offline 24H)</span>
+          </div>
         </div>
       </div>
 
       <!-- Battle Masters Box -->
-      <div class="mentors-box">
-        <div class="section-tag" style="color: var(--vidyut-cyan);">COMMAND GUIDANCE</div>
-        <h3 class="font-cinzel" style="font-size: 24px; color: var(--plasma-white); margin-top: 6px;">BATTLE MASTERS</h3>
-        <p style="font-size: 14px; color: var(--text-muted); margin-top: 8px;">
+      <div class="mentors-box bento-card">
+        <div class="section-tag font-mono" style="color: var(--vidyut-cyan);">COMMAND GUIDANCE</div>
+        <h3 class="font-cinzel bento-card-title">BATTLE MASTERS</h3>
+        <p class="bento-card-desc">
           Build with guidance from leading industry experts, innovators, and university faculty mentors during the 24 hours.
         </p>
 
         <!-- Side Quests Banner -->
         <div class="side-quests-banner">
           <div>
-            <div class="quest-tag">OPTIONAL SIDE QUESTS DETECTED</div>
+            <div class="quest-tag font-mono">OPTIONAL SIDE QUESTS DETECTED</div>
             <div class="quest-title font-cinzel">QUIZZES & TREASURE HUNT</div>
+            <p class="quest-desc">Solve live algorithmic riddles and exploration puzzles across campus during the sprint.</p>
           </div>
-          <span style="font-size: 28px;">🗺️</span>
+          <span class="quest-icon"><svg class="inline-icon" style="width: 32px; height: 32px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg></span>
         </div>
 
-        <div style="margin-top: 20px; font-size: 13.5px; color: var(--text-main); line-height: 1.5;">
-          Gain hands-on experience, problem-solving, rapid prototyping, and exclusive incubation networking.
+        <div class="mentors-perks font-mono">
+          <span class="perk-tag"><svg class="inline-icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Rapid Prototyping</span>
+          <span class="perk-tag"><svg class="inline-icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Mentor Reviews</span>
+          <span class="perk-tag"><svg class="inline-icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Incubation Pipeline</span>
         </div>
       </div>
     </div>
@@ -553,40 +685,45 @@
     ========================================================== -->
     <section id="chronicle-section" class="chronicle-section">
       <div class="section-head">
-        <div class="section-tag">SACRED CALENDAR</div>
+        <div class="section-tag font-mono">SACRED CALENDAR</div>
         <h2 class="section-title font-cinzel">THE BATTLE CHRONICLE</h2>
         <p class="section-desc">Key milestones on the path to the championship.</p>
       </div>
 
-      <div class="timeline-path">
-        <div class="timeline-node">
-          <div class="timeline-date">11 OCTOBER 2026 · 12:00 AM IST</div>
-          <h4 class="timeline-event">PHASE 1 OPENS — PPT SUBMISSION BEGINS</h4>
-          <p class="timeline-detail">Online screening opens. Squads register and submit their battle proposals.</p>
+      <div class="timeline-bento-grid">
+        <div class="timeline-bento-card">
+          <div class="timeline-step-badge font-mono">PHASE 01 · LAUNCH</div>
+          <div class="timeline-date font-mono">11 OCT 2026 · 12:00 AM IST</div>
+          <h4 class="timeline-event font-cinzel">PPT SUBMISSION BEGINS</h4>
+          <p class="timeline-detail">Online screening opens. Squads register and submit their proposed solutions.</p>
         </div>
 
-        <div class="timeline-node">
-          <div class="timeline-date">14 OCTOBER 2026 · 11:59 PM IST</div>
-          <h4 class="timeline-event">PHASE 1 CLOSES — SUBMISSION DEADLINE</h4>
+        <div class="timeline-bento-card">
+          <div class="timeline-step-badge font-mono">PHASE 01 · DEADLINE</div>
+          <div class="timeline-date font-mono">14 OCT 2026 · 11:59 PM IST</div>
+          <h4 class="timeline-event font-cinzel">SUBMISSION DEADLINE</h4>
           <p class="timeline-detail">Online portal locks. Evaluation committee screens proposals against the 4 judgement criteria.</p>
         </div>
 
-        <div class="timeline-node">
-          <div class="timeline-date">MID OCTOBER 2026</div>
-          <h4 class="timeline-event">SHORTLISTING OF FINAL WARRIOR SQUADS</h4>
-          <p class="timeline-detail">Top squads are invited to the offline battlegrounds at Chandigarh University.</p>
+        <div class="timeline-bento-card">
+          <div class="timeline-step-badge font-mono">EVALUATION</div>
+          <div class="timeline-date font-mono">MID OCTOBER 2026</div>
+          <h4 class="timeline-event font-cinzel">SHORTLIST ANNOUNCED</h4>
+          <p class="timeline-detail">Top qualifying squads receive official summons to the offline arena at Chandigarh University.</p>
         </div>
 
-        <div class="timeline-node">
-          <div class="timeline-date">27 OCTOBER 2026 · 08:30 AM IST</div>
-          <h4 class="timeline-event">THE FINAL YUDH COMMENCES</h4>
+        <div class="timeline-bento-card">
+          <div class="timeline-step-badge font-mono">PHASE 02 · COMMENCE</div>
+          <div class="timeline-date font-mono">27 OCT 2026 · 08:30 AM IST</div>
+          <h4 class="timeline-event font-cinzel">THE FINAL YUDH</h4>
           <p class="timeline-detail">Opening ceremony, mentor allocations, and the 24-hour non-stop countdown initiates.</p>
         </div>
 
-        <div class="timeline-node">
-          <div class="timeline-date">28 OCTOBER 2026 · 05:00 PM IST</div>
-          <h4 class="timeline-event">HACKATHON CONCLUDES & FINAL EVALUATION</h4>
-          <p class="timeline-detail">Final live demonstrations before the jury, awards ceremony, and crowning of the Champions.</p>
+        <div class="timeline-bento-card finale-bento-card">
+          <div class="timeline-step-badge font-mono" style="color: var(--vidyut-cyan);">GRAND FINALE</div>
+          <div class="timeline-date font-mono">28 OCT 2026 · 05:00 PM IST</div>
+          <h4 class="timeline-event font-cinzel">JURY DEMOS & AWARDS</h4>
+          <p class="timeline-detail">Live demonstrations before the jury, awards ceremony, and crowning of Champions.</p>
         </div>
       </div>
     </section>
@@ -717,37 +854,32 @@
     <!-- ==========================================================
          10. FINAL REUNION SCENE & GRAND CTA
     ========================================================== -->
-    <section class="final-scene-section">
+    <section class="final-scene-section bento-cta-card">
       <div class="final-warriors-display">
-        <div class="warrior-avatar-left">⚔️</div>
-        <div class="reunion-prototype">🌟</div>
-        <div class="warrior-avatar-right">⚡</div>
+        <div class="warrior-avatar-left"><svg class="inline-icon icon-xl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+        <div class="reunion-prototype"><svg class="inline-icon icon-xl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
+        <div class="warrior-avatar-right"><svg class="inline-icon icon-xl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
       </div>
 
-      <div class="section-tag" style="color: var(--bright-amber); font-size: 14px;">THE BATTLE AWAITS</div>
-      <h2 class="font-cinzel" style="font-size: clamp(32px, 5vw, 60px); color: var(--plasma-white); margin-top: 8px;">
-        YOUR BATTLE BEGINS HERE
-      </h2>
-      <p style="font-size: 18px; color: var(--text-main); max-width: 600px; margin: 12px auto 0;">
+      <div class="section-tag font-mono">THE BATTLE AWAITS</div>
+      <h2 class="final-cta-title font-cinzel">YOUR BATTLE BEGINS HERE</h2>
+      <p class="final-cta-desc">
         Your idea is only the beginning. Form your team. Choose your battlefield. Build your solution. Take on Code Yudh.
       </p>
 
-      <div style="margin-top: 28px;">
-        <button class="open-reg-modal final-cta-btn interactive" data-hud="REGISTER FOR CODE YUDH">
-          ⚔️ ENTER THE BATTLE
+      <div class="final-cta-actions">
+        <button class="open-reg-modal boom-btn final-cta-btn interactive" data-hud="REGISTER FOR CODE YUDH">
+          <svg class="inline-icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg> ENTER THE BATTLE
         </button>
-      </div>
-
-      <div style="margin-top: 20px;">
-        <a href="#battlefields-section" class="interactive" data-hud="EXPLORE TRACKS" style="color: var(--vidyut-cyan); font-family: 'JetBrains Mono', monospace; font-size: 13px; text-decoration: none; letter-spacing: 1px;">
-          🗺️ EXPLORE BATTLEFIELDS ➔
+        <a href="#battlefields-section" class="final-explore-link interactive" data-hud="EXPLORE TRACKS">
+          <svg class="inline-icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> EXPLORE BATTLEFIELDS ➔
         </a>
       </div>
     </section>
 
     <!-- FOOTER -->
     <footer class="battle-footer">
-      <div class="footer-logo">⚔️ CODE YUDH — BATTLE OF CODES</div>
+      <div class="footer-logo"><svg class="inline-icon icon-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> CODE YUDH — BATTLE OF CODES</div>
       <p style="font-size: 14px; color: var(--text-muted); margin-top: 8px;">
         24-Hour Software Development Hackathon · 27–28 October 2026 · Chandigarh University, Mohali
       </p>
@@ -774,28 +906,28 @@
         Register your 3–4 warrior squad for Code Yudh 2026 at Chandigarh University.
       </p>
 
-      <form id="reg-form" style="margin-top: 20px;" onsubmit="event.preventDefault(); alert('⚔️ Squad Enlistment Recorded! Check your email for battle orders.'); document.getElementById('reg-modal').classList.remove('active');">
+      <form id="reg-form" style="margin-top: 20px;" onsubmit="event.preventDefault(); alert('Squad Enlistment Recorded! Check your email for battle orders.'); document.getElementById('reg-modal').classList.remove('active');">
         <div style="margin-bottom: 14px;">
-          <label style="display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--bright-amber); margin-bottom: 4px;">SQUAD NAME</label>
-          <input type="text" required placeholder="e.g. CyberVanguard" style="width: 100%; background: #0c0f17; border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 4px; padding: 10px; color: #fff; font-family: inherit;" />
+          <label style="display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--vidyut-cyan); margin-bottom: 4px;">SQUAD NAME</label>
+          <input type="text" required placeholder="e.g. CyberVanguard" style="width: 100%; background: #000000; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 0px; padding: 10px; color: #fff; font-family: inherit;" />
         </div>
 
         <div style="margin-bottom: 14px;">
-          <label style="display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--bright-amber); margin-bottom: 4px;">TEAM LEADER NAME & EMAIL</label>
-          <input type="text" required placeholder="Warrior Lead (name@university.edu)" style="width: 100%; background: #0c0f17; border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 4px; padding: 10px; color: #fff; font-family: inherit;" />
+          <label style="display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--vidyut-cyan); margin-bottom: 4px;">TEAM LEADER NAME & EMAIL</label>
+          <input type="text" required placeholder="Warrior Lead (name@university.edu)" style="width: 100%; background: #000000; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 0px; padding: 10px; color: #fff; font-family: inherit;" />
         </div>
 
         <div style="margin-bottom: 14px;">
-          <label style="display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--bright-amber); margin-bottom: 4px;">SQUAD SIZE</label>
-          <select style="width: 100%; background: #0c0f17; border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 4px; padding: 10px; color: #fff; font-family: inherit;">
+          <label style="display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--vidyut-cyan); margin-bottom: 4px;">SQUAD SIZE</label>
+          <select style="width: 100%; background: #000000; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 0px; padding: 10px; color: #fff; font-family: inherit;">
             <option>3 Members</option>
             <option selected>4 Members</option>
           </select>
         </div>
 
         <div style="margin-bottom: 18px;">
-          <label style="display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--bright-amber); margin-bottom: 4px;">PRIMARY BATTLEFIELD TRACK</label>
-          <select style="width: 100%; background: #0c0f17; border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 4px; padding: 10px; color: #fff; font-family: inherit;">
+          <label style="display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--vidyut-cyan); margin-bottom: 4px;">PRIMARY BATTLEFIELD TRACK</label>
+          <select style="width: 100%; background: #000000; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 0px; padding: 10px; color: #fff; font-family: inherit;">
             <option>01 — Smart & Sustainable Cities</option>
             <option>02 — AgriTech & Rural Transformation</option>
             <option>03 — Healthcare, Wellbeing & Assistive Tech</option>
@@ -806,9 +938,33 @@
         </div>
 
         <button type="submit" class="boom-btn interactive" data-hud="SUBMIT ENLISTMENT" style="width: 100%; padding: 14px; font-size: 16px;">
-          ⚔️ CONFIRM SQUAD REGISTRATION
+          CONFIRM SQUAD REGISTRATION
         </button>
       </form>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       12. BATTLE QUICK SEARCH / COMMAND PALETTE (CTRL + K)
+  ========================================================== -->
+  <div id="battle-search-modal" class="search-modal-overlay">
+    <div class="search-modal-card">
+      <div class="search-modal-header">
+        <svg class="search-modal-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="battle-search-input" placeholder="Search mission, scrolls, battlefields, tech, FAQ..." autocomplete="off" />
+        <button id="search-modal-close" class="search-modal-esc font-mono" title="Close Search">ESC</button>
+      </div>
+      <div class="search-modal-hint font-mono">
+        <span>↑↓ Navigate</span>
+        <span>↵ Select</span>
+        <span>ESC Close</span>
+      </div>
+      <div class="search-results-list" id="search-results-container">
+        <!-- Rendered dynamically -->
+      </div>
     </div>
   </div>
 

@@ -89,7 +89,7 @@ export class SwordCursor {
         vx: Math.cos(angle) * speed * (Math.random() > 0.5 ? 1 : -1),
         vy: Math.sin(angle) * speed + (Math.random() - 0.5) * 4,
         size: 2 + Math.random() * 4,
-        color: Math.random() > 0.4 ? '#f59e0b' : '#00f0ff',
+        color: Math.random() > 0.4 ? '#ffffff' : '#ffe600',
         alpha: 1,
         life: 0.9,
         glyph: Math.random() > 0.6 ? glyphs[Math.floor(Math.random() * glyphs.length)] : null
@@ -199,13 +199,13 @@ export class SwordCursor {
       const grad = this.ctx.createLinearGradient(-s.length / 2, 0, s.length / 2, 0);
       grad.addColorStop(0, 'rgba(255, 255, 255, 0)');
       grad.addColorStop(0.5, `rgba(255, 255, 255, ${s.opacity})`);
-      grad.addColorStop(0.7, `rgba(0, 240, 255, ${s.opacity * 0.8})`);
-      grad.addColorStop(1, 'rgba(245, 158, 11, 0)');
+      grad.addColorStop(0.7, `rgba(255, 230, 0, ${s.opacity * 0.8})`);
+      grad.addColorStop(1, 'rgba(255, 230, 0, 0)');
 
       this.ctx.strokeStyle = grad;
       this.ctx.lineWidth = s.width * s.opacity;
-      this.ctx.shadowColor = '#00f0ff';
-      this.ctx.shadowBlur = 15;
+      this.ctx.shadowColor = '#ffe600';
+      this.ctx.shadowBlur = 10;
 
       this.ctx.beginPath();
       this.ctx.moveTo(-s.length / 2, 0);
