@@ -34,15 +34,15 @@
       <a href="#chronicle-section" class="hud-link interactive" data-hud="EVENT TIMELINE">CHRONICLE</a>
       <a href="#faq-section" class="hud-link interactive" data-hud="WAR TABLETS FAQ">FAQ</a>
     </nav>
-    <button class="open-reg-modal boom-btn interactive" data-hud="REGISTER YOUR SQUAD" style="padding: 8px 20px; font-size: 13px;">
-      ⚔️ ENTER BATTLE
-    </button>
+    <a href="#about-section" class="boom-btn interactive" data-hud="EXPLORE EVENT" style="padding: 8px 20px; font-size: 13px; text-decoration: none;">
+      ⚔️ EVENT DETAILS
+    </a>
   </header>
 
   <!-- ==========================================================
        1. THE FIRST MOMENTS: FULLSCREEN VIDEO + SINGULARITY BOOM
   ========================================================== -->
-  <div id="cinematic-intro">
+  <div id="cinematic-intro" class="interactive" data-hud="CLICK TO TRIGGER CLASH BOOM">
     <!-- Single Master Clash Video -->
     <video id="cinematic-video" class="cinematic-bg-video" autoplay muted playsinline>
       <source src="/assets/warriors_sword.mp4" type="video/mp4" />
@@ -50,22 +50,6 @@
 
     <!-- White-Hot Plasma Singularity Flash on Clash Boom -->
     <div id="boom-flash"></div>
-
-    <!-- Overlay controls over video -->
-    <div class="intro-video-controls">
-      <div class="intro-video-status font-mono">
-        ⚡ BATTLE SINGULARITY INCOMING // CLASH AT IMPACT
-      </div>
-
-      <div class="intro-actions">
-        <button id="trigger-boom-btn" class="boom-btn interactive" data-hud="EXECUTE CLASH BOOM">
-          💥 TRIGGER BOOM & ENTER
-        </button>
-        <button id="skip-intro-btn" class="skip-intro interactive" data-hud="ENTER DIRECTLY">
-          SKIP TO SCROLL ⏩
-        </button>
-      </div>
-    </div>
   </div>
 
   <!-- ==========================================================
@@ -733,14 +717,14 @@
       </p>
 
       <div style="margin-top: 28px;">
-        <button class="open-reg-modal final-cta-btn interactive" data-hud="REGISTER FOR CODE YUDH">
-          ⚔️ ENTER THE BATTLE
-        </button>
+        <a href="#scrolls-anchor" class="final-cta-btn interactive" data-hud="EXPLORE BATTLE SCROLLS">
+          ⚔️ UNROLL THE BATTLE SCROLLS
+        </a>
       </div>
 
       <div style="margin-top: 20px;">
         <a href="#battlefields-section" class="interactive" data-hud="EXPLORE TRACKS" style="color: var(--vidyut-cyan); font-family: 'JetBrains Mono', monospace; font-size: 13px; text-decoration: none; letter-spacing: 1px;">
-          🗺️ EXPLORE BATTLEFIELDS ➔
+          🗺️ EXPLORE 6 BATTLEFIELD TRACKS ➔
         </a>
       </div>
     </section>
@@ -760,57 +744,6 @@
     </footer>
 
   </main>
-
-  <!-- ==========================================================
-       11. REGISTRATION MODAL
-  ========================================================== -->
-  <div id="reg-modal" class="modal-overlay">
-    <div class="modal-card">
-      <button id="modal-close-btn" class="modal-close interactive" data-hud="CLOSE MODAL">✕</button>
-      
-      <div class="section-tag">ENLIST SQUAD</div>
-      <h3 class="font-cinzel" style="font-size: 24px; color: var(--plasma-white); margin-top: 4px;">ENTER THE BATTLE</h3>
-      <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">
-        Register your 3–4 warrior squad for Code Yudh 2026 at Chandigarh University.
-      </p>
-
-      <form id="reg-form" style="margin-top: 20px;" onsubmit="event.preventDefault(); alert('⚔️ Squad Enlistment Recorded! Check your email for battle orders.'); document.getElementById('reg-modal').classList.remove('active');">
-        <div style="margin-bottom: 14px;">
-          <label style="display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--bright-amber); margin-bottom: 4px;">SQUAD NAME</label>
-          <input type="text" required placeholder="e.g. CyberVanguard" style="width: 100%; background: #0c0f17; border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 4px; padding: 10px; color: #fff; font-family: inherit;" />
-        </div>
-
-        <div style="margin-bottom: 14px;">
-          <label style="display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--bright-amber); margin-bottom: 4px;">TEAM LEADER NAME & EMAIL</label>
-          <input type="text" required placeholder="Warrior Lead (name@university.edu)" style="width: 100%; background: #0c0f17; border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 4px; padding: 10px; color: #fff; font-family: inherit;" />
-        </div>
-
-        <div style="margin-bottom: 14px;">
-          <label style="display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--bright-amber); margin-bottom: 4px;">SQUAD SIZE</label>
-          <select style="width: 100%; background: #0c0f17; border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 4px; padding: 10px; color: #fff; font-family: inherit;">
-            <option>3 Members</option>
-            <option selected>4 Members</option>
-          </select>
-        </div>
-
-        <div style="margin-bottom: 18px;">
-          <label style="display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--bright-amber); margin-bottom: 4px;">PRIMARY BATTLEFIELD TRACK</label>
-          <select style="width: 100%; background: #0c0f17; border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 4px; padding: 10px; color: #fff; font-family: inherit;">
-            <option>01 — Smart & Sustainable Cities</option>
-            <option>02 — AgriTech & Rural Transformation</option>
-            <option>03 — Healthcare, Wellbeing & Assistive Tech</option>
-            <option>04 — Education, Skilling & Future of Work</option>
-            <option>05 — Energy, Environment & Climate Action</option>
-            <option>06 — Open Innovation (No Boundaries)</option>
-          </select>
-        </div>
-
-        <button type="submit" class="boom-btn interactive" data-hud="SUBMIT ENLISTMENT" style="width: 100%; padding: 14px; font-size: 16px;">
-          ⚔️ CONFIRM SQUAD REGISTRATION
-        </button>
-      </form>
-    </div>
-  </div>
 
   <script type="module" src="/src/main.js"></script>
 </body>

@@ -99,11 +99,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 250);
   };
 
-  if (triggerBoomBtn) {
-    triggerBoomBtn.addEventListener('click', executeBoom);
-  }
-
-  if (skipBtn) {
-    skipBtn.addEventListener('click', executeBoom);
+  // Clicking anywhere on the intro video screen triggers the boom transition
+  if (introEl) {
+    introEl.addEventListener('click', executeBoom);
   }
 });

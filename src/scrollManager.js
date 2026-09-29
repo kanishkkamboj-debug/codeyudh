@@ -14,7 +14,6 @@ export class ScrollManager {
     this.initBattleClock();
     this.initArsenalStrikes();
     this.initFAQTablets();
-    this.initModal();
   }
 
   // --- DAY 01: ROYAL WAX SEAL SLASH ---
@@ -189,36 +188,6 @@ export class ScrollManager {
           if (icon) icon.textContent = '⚔️';
         }
       });
-    });
-  }
-
-  // --- REGISTRATION MODAL ---
-  initModal() {
-    const modal = document.getElementById('reg-modal');
-    const openBtns = document.querySelectorAll('.open-reg-modal');
-    const closeBtn = document.getElementById('modal-close-btn');
-
-    if (!modal) return;
-
-    openBtns.forEach((btn) => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        battleAudio.playSlash();
-        modal.classList.add('active');
-      });
-    });
-
-    if (closeBtn) {
-      closeBtn.addEventListener('click', () => {
-        battleAudio.playWhoosh();
-        modal.classList.remove('active');
-      });
-    }
-
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.classList.remove('active');
-      }
     });
   }
 }
